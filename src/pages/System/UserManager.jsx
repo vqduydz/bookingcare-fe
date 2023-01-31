@@ -1,40 +1,33 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { Typography } from '@mui/material';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import PropTypes from 'prop-types';
+import {
+    Box,
+    Collapse,
+    IconButton,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
+} from '@mui/material';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { muiCustomStyles } from '_/components/CustomComponents/CustomMui';
-import { rows } from '_/data/data';
+import { selector } from '_/redux/selector';
+import { getUser } from '_/redux/slices';
 import AddUser from './AddUser';
 import Edit from './Edit';
 import Header from './Header';
-
-Row.propTypes = {
-    row: PropTypes.shape({
-        mail: PropTypes.string.isRequired,
-        firstName: PropTypes.string.isRequired,
-        lastName: PropTypes.string.isRequired,
-        position: PropTypes.string.isRequired,
-        phoneNum: PropTypes.string.isRequired,
-        gender: PropTypes.string.isRequired,
-        address: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
-    }).isRequired,
-};
+import { useSelector } from 'react-redux';
 
 function Row(props) {
-    const { row, STT, setEdit } = props;
-    const { phoneNum, gender, address } = row;
+    const { user, STT, setEdit } = props;
+    const { phonenumber, gender, address, firstName, lastName, position, createdAt, email } = user;
     const [open, setOpen] = useState(false);
 
     return (
@@ -55,11 +48,11 @@ function Row(props) {
                     {STT}
                 </TableCell>
                 <TableCell component="th" scope="row">
-                    {row.mail}
+                    {email}
                 </TableCell>
-                <TableCell align="right">{`${row.firstName} ${row.lastName}`}</TableCell>
-                <TableCell align="right">{row.position}</TableCell>
-                <TableCell align="right">{row.createDate}</TableCell>
+                <TableCell align="right">{`${firstName} ${lastName}`}</TableCell>
+                <TableCell align="right">{position}</TableCell>
+                <TableCell align="right">{createdAt}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -81,7 +74,7 @@ function Row(props) {
                                 <TableBody>
                                     <TableRow>
                                         <TableCell sx={{ paddingLeft: '1vh' }} component="th" scope="row">
-                                            {phoneNum}
+                                            {phonenumber}
                                         </TableCell>
                                         <TableCell>{gender}</TableCell>
                                         <TableCell align="right">{address}</TableCell>
@@ -111,7 +104,7 @@ function Row(props) {
                                             >
                                                 <IconButton
                                                     onClick={() => {
-                                                        setEdit({ stt: true, value: row });
+                                                        setEdit({ stt: true, value: user });
                                                     }}
                                                     className="btn"
                                                     aria-label="delete"
@@ -157,6 +150,11 @@ export default function UserManager() {
     const [addUser, setAddUser] = useState(false);
     const [overLay, setOverLay] = useState(false);
     const [sideNav, setSideNav] = useState(false);
+    const [allUser, setAllUser] = useState([]);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const currentUser = useSelector(selector.currentUser);
+
     useEffect(() => {
         if (!sideNav && !addUser && !edit.stt) {
             setOverLay(false);
@@ -165,9 +163,25 @@ export default function UserManager() {
         setOverLay(true);
     }, [addUser, edit.stt, sideNav]);
 
+    useEffect(() => {
+        if (!currentUser) {
+            navigate('/login');
+            return;
+        }
+        dispatch(getUser())
+            .then(unwrapResult)
+            .then((result) => {
+                setAllUser(result.data);
+            });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [overLay]);
+
     return (
         <Box sx={{ ...muiCustomStyles, ...styleBtn }}>
-            <Header setAddUser={setAddUser} sideNav={sideNav} setSideNav={setSideNav} />
+            {currentUser && (
+                <Header setAddUser={setAddUser} sideNav={sideNav} setSideNav={setSideNav} currentUser={currentUser} />
+            )}
+
             <Box sx={{ minWidth: '768px', position: 'relative', mt: '40px' }}>
                 <TableContainer sx={{ padding: '10px' }} component={Paper}>
                     <Typography variant="h4">Current user list</Typography>
@@ -199,8 +213,8 @@ export default function UserManager() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row, index) => {
-                                return <Row setEdit={setEdit} key={index} row={row} STT={index + 1} />;
+                            {allUser.map((user, index) => {
+                                return <Row setEdit={setEdit} key={user.id} user={user} STT={index + 1} />;
                             })}
                         </TableBody>
                     </Table>

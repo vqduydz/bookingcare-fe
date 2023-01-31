@@ -1,27 +1,30 @@
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useState } from 'react';
+import axios from 'axios';
 import { Button } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
 
 export default function AddUser({ setAddUser }) {
-    const [value, setValue] = useState({});
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        setValue({
+        const dataUser = {
             firstName: data.get('firstName'),
             lastName: data.get('lastName'),
             email: data.get('email'),
             password: data.get('password'),
-            phoneNumber: data.get('phoneNumber'),
+            confirmpassword: data.get('confirmpassword'),
+            phonenumber: data.get('phonenumber'),
             address: data.get('address'),
             gender: data.get('gender'),
             position: data.get('position'),
             createDate: new Date().getTime(),
-        });
+        };
+        axios
+            .post('http://localhost:8080/api/user', dataUser)
+            .then((res) => setAddUser(false))
+            .catch((e) => console.log(e));
     };
-    console.log({ value });
     return (
         <Box>
             <Box
@@ -101,13 +104,24 @@ export default function AddUser({ setAddUser }) {
                     <MyTextField
                         sx={{ marginBottom: '2vh' }}
                         size="small"
+                        label="Enter Password"
+                        required
+                        fullWidth
+                        name="confirmpassword"
+                        type="password"
+                        id="confirmpassword"
+                        autoComplete="current-password"
+                    />
+                    <MyTextField
+                        sx={{ marginBottom: '2vh' }}
+                        size="small"
                         label="Enter Phone Number"
                         required
                         fullWidth
-                        name="phoneNumber"
-                        type=""
-                        id="phoneNumber"
-                        autoComplete="phoneNumber"
+                        name="phonenumber"
+                        type="number"
+                        id="phonenumber"
+                        autoComplete="phonenumber"
                     />
                     <MyTextField
                         sx={{ marginBottom: '2vh' }}
@@ -142,7 +156,6 @@ export default function AddUser({ setAddUser }) {
                         <FormControlLabel value="admin" control={<Radio />} label="Admin" />
                         <FormControlLabel value="doctor" control={<Radio />} label="Doctor" />
                     </RadioGroup>
-
                     <Button primary className="btn" type="submit">
                         Add
                     </Button>

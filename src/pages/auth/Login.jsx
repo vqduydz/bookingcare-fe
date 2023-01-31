@@ -1,20 +1,40 @@
-import Box from '@mui/material/Box';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
+import { login } from '_/redux/slices';
 import AuthWrapper from './AuthWrapper';
 
 export default function SignIn() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [notif, setNotif] = useState();
+    const [currentUser, setCurrentUser] = useState();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setNotif();
+        const data = new FormData(e.currentTarget);
+        // const email = data.get('email');
+        // const password = data.get('password');
+
+        const userData = {
             email: data.get('email'),
             password: data.get('password'),
-        });
+        };
+
+        dispatch(login(userData))
+            .then(unwrapResult)
+            .then((result) => {
+                setCurrentUser(result);
+                navigate('/usermanager');
+            });
     };
 
+    console.log({ currentUser });
     return (
         <AuthWrapper>
             <form onSubmit={handleSubmit}>
@@ -31,7 +51,6 @@ export default function SignIn() {
                     autoFocus
                 />
                 <MyTextField
-                    sx={{ marginBottom: '2vh' }}
                     size="small"
                     label="Enter Password"
                     required
@@ -41,6 +60,13 @@ export default function SignIn() {
                     id="password"
                     autoComplete="current-password"
                 />
+                <Box sx={{ height: '1.3rem', marginTop: '1vh' }}>
+                    {notif && (
+                        <Typography sx={{ color: notif.color, height: '100%', fontSize: '1.2rem' }} variant="body2">
+                            {notif.content}
+                        </Typography>
+                    )}
+                </Box>
                 <FormControlLabel
                     sx={{ display: 'flex' }}
                     control={<Checkbox value="remember" color="primary" />}

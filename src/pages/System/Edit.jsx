@@ -11,7 +11,7 @@ export default function Edit({ edit, setEdit }) {
         console.log({
             firstName: data.get('firstName'),
             lastName: data.get('lastName'),
-            phoneNum: data.get('phoneNum'),
+            phonenumber: data.get('phonenumber'),
             gender: data.get('gender'),
             address: data.get('address'),
             position: data.get('position'),
@@ -74,16 +74,16 @@ export default function Edit({ edit, setEdit }) {
                         type=""
                     />
                     <MyTextField
-                        defaultValue={value.phoneNum}
+                        defaultValue={value.phonenumber}
                         sx={{ marginBottom: '2vh' }}
                         size="small"
                         label="Enter Phone Number"
                         required
                         fullWidth
-                        name="phoneNum"
-                        type=""
-                        id="phoneNum"
-                        autoComplete="phoneNum"
+                        name="phonenumber"
+                        type="number"
+                        id="phonenumber"
+                        autoComplete="phonenumber"
                     />
                     <MyTextField
                         defaultValue={value.address}

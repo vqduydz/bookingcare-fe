@@ -1,27 +1,28 @@
 import { CssBaseline } from '@mui/material';
+import { StyledEngineProvider } from '@mui/material/styles';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-import { StyledEngineProvider } from '@mui/material/styles';
+import { Provider } from 'react-redux';
 
 import App from './App';
 import GlobalStyles from './assets/GlobalStyles';
 import ThemeMuiContextProvider from './context/ThemeMuiContext';
+import { store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
-import AuthContextProvider from './context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <StrictMode>
-        <AuthContextProvider>
-            <StyledEngineProvider>
-                <ThemeMuiContextProvider>
-                    <CssBaseline />
-                    <GlobalStyles>
+        <StyledEngineProvider>
+            <ThemeMuiContextProvider>
+                <CssBaseline />
+                <GlobalStyles>
+                    <Provider store={store}>
                         <App />
-                    </GlobalStyles>
-                </ThemeMuiContextProvider>
-            </StyledEngineProvider>
-        </AuthContextProvider>
+                    </Provider>
+                </GlobalStyles>
+            </ThemeMuiContextProvider>
+        </StyledEngineProvider>
     </StrictMode>,
 );
 

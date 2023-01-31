@@ -3,8 +3,12 @@ import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
 import { Button } from '_/components';
 
 export default function Header(props) {
-    const { setAddUser, sideNav, setSideNav } = props;
+    const { currentUser, setAddUser, sideNav, setSideNav } = props;
 
+    const { email, firstName, lastName, position } = currentUser;
+    // {
+    //     `${firstName} ${lastName}`;
+    // }
     return (
         <AppBar
             position="fixed"
@@ -63,10 +67,10 @@ export default function Header(props) {
                                     }}
                                 >
                                     <Typography sx={{ fontStyle: 'italic' }} variant="h4">
-                                        <b>{`duyvq@gmail.com`}</b>
+                                        <b>{email}</b>
                                     </Typography>
                                     <Typography sx={{ fontStyle: 'italic' }} variant="h4">
-                                        <b>{`root`}</b>
+                                        <b>{position}</b>
                                     </Typography>
 
                                     <Button
@@ -125,13 +129,13 @@ export default function Header(props) {
                                 sx={{ display: 'inline-flex', minWidth: '300px', fontStyle: 'italic' }}
                                 variant="h4"
                             >
-                                Current user : <b>{`duyvq@gmail.com`}</b>
+                                Current user : <b>{email}</b>
                             </Typography>
                             <Typography
                                 sx={{ display: 'inline-flex', minWidth: '300px', fontStyle: 'italic' }}
                                 variant="h4"
                             >
-                                Position : <b>{`root`}</b>
+                                Position : <b>{position}</b>
                             </Typography>
                             <Box
                                 sx={{
