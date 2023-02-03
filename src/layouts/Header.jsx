@@ -35,11 +35,11 @@ function Header() {
 
     return (
         <AppBar
-            position="static"
+            position="sticky"
             sx={{
                 padding: '10px 0',
                 background: 'rgba(255, 255, 255, 1)',
-                zIndex: 2,
+                zIndex: 3,
                 width: '100%',
                 boxShadow: '0px 1px 1px rgb(0 0 0 / 18%)',
             }}

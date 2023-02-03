@@ -1,21 +1,38 @@
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import Box from '@mui/material/Box';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+
 import { Button } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
+import { useThemMui } from '_/context/ThemeMuiContext';
+import { updateUser } from '_/redux/slices';
 
 export default function Edit({ edit, setEdit }) {
+    const dispatch = useDispatch();
     const { value } = edit;
+    const { id, firstName, lastName, phonenumber, address, gender, position } = value;
+    const { setLoading } = useThemMui();
     const handleSubmit = (event) => {
         event.preventDefault();
+        setLoading(true);
         const data = new FormData(event.currentTarget);
-        console.log({
+        const dataUpdate = {
+            id,
             firstName: data.get('firstName'),
             lastName: data.get('lastName'),
             phonenumber: data.get('phonenumber'),
             gender: data.get('gender'),
             address: data.get('address'),
-            position: data.get('position'),
-        });
+            position: position === 'Root' ? 'Root' : data.get('position'),
+        };
+
+        dispatch(updateUser(dataUpdate))
+            .then(unwrapResult)
+            .then((result) => {
+                setEdit({ stt: false, value: {} });
+                setLoading(false);
+            });
     };
     return (
         <Box>
@@ -49,24 +66,24 @@ export default function Edit({ edit, setEdit }) {
             >
                 <form onSubmit={handleSubmit}>
                     <MyTextField
+                        required
                         sx={{ marginBottom: '2vh' }}
                         size="small"
                         label="First name"
-                        required
                         fullWidth
                         id="firstName"
                         name="firstName"
                         autoComplete="firstName"
                         type=""
                         autoFocus
-                        defaultValue={value.firstName}
+                        defaultValue={firstName}
                     />
                     <MyTextField
-                        defaultValue={value.lastName}
+                        required
+                        defaultValue={lastName}
                         sx={{ marginBottom: '2vh' }}
                         size="small"
                         label="Last name"
-                        required
                         fullWidth
                         id="lastName"
                         name="lastName"
@@ -74,11 +91,10 @@ export default function Edit({ edit, setEdit }) {
                         type=""
                     />
                     <MyTextField
-                        defaultValue={value.phonenumber}
+                        defaultValue={phonenumber}
                         sx={{ marginBottom: '2vh' }}
                         size="small"
                         label="Enter Phone Number"
-                        required
                         fullWidth
                         name="phonenumber"
                         type="number"
@@ -86,11 +102,10 @@ export default function Edit({ edit, setEdit }) {
                         autoComplete="phonenumber"
                     />
                     <MyTextField
-                        defaultValue={value.address}
+                        defaultValue={address}
                         sx={{ marginBottom: '2vh' }}
                         size="small"
                         label="Enter address"
-                        required
                         fullWidth
                         name="address"
                         type=""
@@ -98,16 +113,31 @@ export default function Edit({ edit, setEdit }) {
                         autoComplete="address"
                     />
                     <FormLabel id="gender">Gender</FormLabel>
-                    <RadioGroup defaultValue={value.gender} row aria-labelledby="gender" name="gender">
+                    <RadioGroup defaultValue={gender} row aria-labelledby="gender" name="gender">
                         <FormControlLabel value="Female" control={<Radio />} label="Female" />
                         <FormControlLabel value="Male" control={<Radio />} label="Male" />
                         <FormControlLabel value="Other" control={<Radio />} label="Other" />
                     </RadioGroup>
                     <FormLabel id="position">Position</FormLabel>
-                    <RadioGroup defaultValue={value.position} row aria-labelledby="position" name="position">
-                        <FormControlLabel value="root" control={<Radio />} label="Root" />
-                        <FormControlLabel value="admin" control={<Radio />} label="Admin" />
-                        <FormControlLabel value="doctor" control={<Radio />} label="Doctor" />
+                    <RadioGroup defaultValue={position} row aria-labelledby="position" name="position">
+                        <FormControlLabel
+                            disabled={position === 'Root'}
+                            value="Root"
+                            control={<Radio />}
+                            label="Root"
+                        />
+                        <FormControlLabel
+                            disabled={position === 'Root'}
+                            value="Admin"
+                            control={<Radio />}
+                            label="Admin"
+                        />
+                        <FormControlLabel
+                            disabled={position === 'Root'}
+                            value="Doctor"
+                            control={<Radio />}
+                            label="Doctor"
+                        />
                     </RadioGroup>
 
                     <Button primary className="btn" type="submit">

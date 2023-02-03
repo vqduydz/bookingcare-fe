@@ -8,6 +8,8 @@ const ThemeMuiContext = createContext({
     color: '',
     switchMode: () => {},
     switchSidebar: () => {},
+    loading: null,
+    setLoading: () => {},
 });
 
 export const useThemMui = () => useContext(ThemeMuiContext);
@@ -17,6 +19,7 @@ function ThemeMuiContextProvider({ children }) {
     localStorage.getItem('testObject');
     const [mode, setMode] = useState(JSON.parse(localStorage.getItem('mode')) || 'light');
     const [showSidebar, setShow] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         localStorage.setItem('mode', JSON.stringify(mode));
@@ -212,7 +215,7 @@ function ThemeMuiContextProvider({ children }) {
 
     const backgroundColor = them.palette.background.default;
     const color = them.palette.text.primary;
-    const value = { theme, backgroundColor, color, switchMode, showSidebar, switchSidebar };
+    const value = { theme, backgroundColor, color, switchMode, loading, setLoading, showSidebar, switchSidebar };
 
     return (
         <ThemeMuiContext.Provider value={value}>

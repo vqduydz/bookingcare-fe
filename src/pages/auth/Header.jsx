@@ -1,14 +1,17 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import { Button } from '_/components';
+import { logout } from '_/redux/slices';
 
 export default function Header(props) {
+    const dispatch = useDispatch();
     const { currentUser, setAddUser, sideNav, setSideNav } = props;
+    const { email, position } = currentUser;
 
-    const { email, firstName, lastName, position } = currentUser;
-    // {
-    //     `${firstName} ${lastName}`;
-    // }
+    const handleLogout = () => {
+        dispatch(logout());
+    };
     return (
         <AppBar
             position="fixed"
@@ -83,14 +86,7 @@ export default function Header(props) {
                                     >
                                         Add new user
                                     </Button>
-                                    <Button
-                                        onClick={() => {
-                                            setAddUser(true);
-                                            setSideNav(false);
-                                        }}
-                                        primary
-                                        className="btn"
-                                    >
+                                    <Button onClick={handleLogout} primary className="btn">
                                         Log out
                                     </Button>
                                 </Box>
@@ -153,7 +149,11 @@ export default function Header(props) {
                                 >
                                     Add new user
                                 </Button>
-                                <Button style={{ padding: '3px 8px', backgroundColor: '#f1f1f1' }} className="btn">
+                                <Button
+                                    onClick={handleLogout}
+                                    style={{ padding: '3px 8px', backgroundColor: '#f1f1f1' }}
+                                    className="btn"
+                                >
                                     Log out
                                 </Button>
                             </Box>

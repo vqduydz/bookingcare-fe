@@ -1,6 +1,5 @@
 import ContentOnlyLayout from '_/layouts/ContentOnlyLayout/ContentOnlyLayout';
-import { ForgotPassword, Home, Login, NotFoundPage, Signup } from '_/pages';
-import UserManager from '_/pages/System/UserManager';
+import { ForgotPassword, Home, Login, NotFoundPage, Signup, UserManager } from '_/pages';
 
 const routes = {
     home: '/',

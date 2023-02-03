@@ -89,7 +89,7 @@ function EditInfoUser() {
                     avatarUrl,
                 };
             })();
-            console.log({ updateDataDoc });
+
             axios.patch(`http://localhost:3099/api/users/${currentUser.id}`, updateDataDoc).then(() => {
                 showNotif('success', 'Edited information successfully !');
                 setLoading(false);

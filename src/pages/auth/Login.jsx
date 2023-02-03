@@ -3,6 +3,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
 import { Button } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
 import { login } from '_/redux/slices';
@@ -12,29 +13,22 @@ export default function SignIn() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [notif, setNotif] = useState();
-    const [currentUser, setCurrentUser] = useState();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setNotif();
         const data = new FormData(e.currentTarget);
-        // const email = data.get('email');
-        // const password = data.get('password');
-
         const userData = {
             email: data.get('email'),
             password: data.get('password'),
         };
+        dispatch(login(userData));
 
         dispatch(login(userData))
             .then(unwrapResult)
-            .then((result) => {
-                setCurrentUser(result);
-                navigate('/usermanager');
-            });
+            .then((res) => (res.error ? setNotif(res.error.message) : navigate('/usermanager')));
     };
 
-    console.log({ currentUser });
     return (
         <AuthWrapper>
             <form onSubmit={handleSubmit}>
@@ -62,8 +56,8 @@ export default function SignIn() {
                 />
                 <Box sx={{ height: '1.3rem', marginTop: '1vh' }}>
                     {notif && (
-                        <Typography sx={{ color: notif.color, height: '100%', fontSize: '1.2rem' }} variant="body2">
-                            {notif.content}
+                        <Typography sx={{ color: 'red', height: '100%', fontSize: '1.2rem' }} variant="body2">
+                            {notif}
                         </Typography>
                     )}
                 </Box>

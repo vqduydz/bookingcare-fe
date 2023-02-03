@@ -30,7 +30,6 @@ axiosService.interceptors.response.use(
         return response;
     },
     (error) => {
-        // Handle errors
         throw error;
     },
 );

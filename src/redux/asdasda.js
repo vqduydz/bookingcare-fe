@@ -1,30 +1,21 @@
-import { currentUserReducer, usersReducer } from './slices';
-
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import storage from 'redux-persist/lib/storage';
-import persistCombineReducers from 'redux-persist/es/persistCombineReducers';
+import { authReducer, usersReducer } from './slices';
 
-const persistCommonConfig = {
+const rootPersistConfig = {
+    key: 'auth',
     storage: storage,
-    stateReconciler: autoMergeLevel2,
+    blacklist: ['users', '_persist', 'currentUser'],
 };
 
-const persistConfig = {
-    ...persistCommonConfig,
-    key: 'currentUser',
-    version: 1,
-    whiteList: ['currentUser'],
-    blackList: ['users', '_persist'],
-};
-
-const Reducers = combineReducers({
-    currentUser: currentUserReducer,
+const rootReducer = combineReducers({
+    auth: persistReducer(rootPersistConfig, authReducer),
     users: usersReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, Reducers);
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 export const store = configureStore({
     reducer: persistedReducer,
@@ -37,9 +28,3 @@ export const store = configureStore({
 });
 
 persistStore({ ...store });
-
-// export const store = configureStore({
-//     reducer: {
-//         user: usersReducer,
-//     },
-// });

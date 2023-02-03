@@ -1,12 +1,22 @@
-import { FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import axios from 'axios';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { Button } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
+import { useThemMui } from '_/context/ThemeMuiContext';
+import { addNewUser } from '_/redux/slices';
 
 export default function AddUser({ setAddUser }) {
+    const dispatch = useDispatch();
+    const { setLoading } = useThemMui();
+    const [notif, setNotif] = useState();
     const handleSubmit = (event) => {
+        setNotif();
         event.preventDefault();
+        setLoading(true);
         const data = new FormData(event.currentTarget);
         const dataUser = {
             firstName: data.get('firstName'),
@@ -20,17 +30,26 @@ export default function AddUser({ setAddUser }) {
             position: data.get('position'),
             createDate: new Date().getTime(),
         };
-        axios
-            .post('http://localhost:8080/api/user', dataUser)
-            .then((res) => setAddUser(false))
-            .catch((e) => console.log(e));
+
+        if (dataUser.password !== dataUser.confirmpassword) {
+            setNotif('Password & confirmpassword noy match');
+            setLoading(false);
+            return;
+        } else
+            dispatch(addNewUser(dataUser))
+                .then(unwrapResult)
+                .then((result) => {
+                    setAddUser();
+                    setLoading(false);
+                });
     };
+
     return (
         <Box>
             <Box
                 sx={{
                     borderRadius: { 768: '10px' },
-                    padding: '55px 20px 37px',
+                    padding: '20px 20px 37px',
                     maxWidth: { 768: '350px' },
                     width: '100%',
                     minWidth: '300px',
@@ -55,9 +74,12 @@ export default function AddUser({ setAddUser }) {
                     },
                 }}
             >
+                <Typography sx={{ fontWeight: 'bold' }} variant="h4">
+                    Add new user
+                </Typography>
                 <form onSubmit={handleSubmit}>
                     <MyTextField
-                        sx={{ marginBottom: '2vh' }}
+                        sx={{ marginTop: '15px' }}
                         size="small"
                         label="First name"
                         required
@@ -69,7 +91,7 @@ export default function AddUser({ setAddUser }) {
                         autoFocus
                     />
                     <MyTextField
-                        sx={{ marginBottom: '2vh' }}
+                        sx={{ marginTop: '15px' }}
                         size="small"
                         label="Last name"
                         required
@@ -80,7 +102,7 @@ export default function AddUser({ setAddUser }) {
                         type=""
                     />
                     <MyTextField
-                        sx={{ marginBottom: '2vh' }}
+                        sx={{ marginTop: '15px' }}
                         size="small"
                         label="Enter Email"
                         required
@@ -91,7 +113,7 @@ export default function AddUser({ setAddUser }) {
                         type="email"
                     />
                     <MyTextField
-                        sx={{ marginBottom: '2vh' }}
+                        sx={{ marginTop: '15px' }}
                         size="small"
                         label="Enter Password"
                         required
@@ -102,9 +124,9 @@ export default function AddUser({ setAddUser }) {
                         autoComplete="current-password"
                     />
                     <MyTextField
-                        sx={{ marginBottom: '2vh' }}
+                        sx={{ marginTop: '15px' }}
                         size="small"
-                        label="Enter Password"
+                        label="Confirm Password"
                         required
                         fullWidth
                         name="confirmpassword"
@@ -112,11 +134,19 @@ export default function AddUser({ setAddUser }) {
                         id="confirmpassword"
                         autoComplete="current-password"
                     />
+                    <Box sx={{ height: '1.3rem', marginTop: '1vh', display: 'flex', alignItems: 'end' }}>
+                        {notif ? (
+                            <Typography sx={{ color: 'red', height: '100%', fontSize: '1.2rem' }} variant="body2">
+                                {notif}
+                            </Typography>
+                        ) : (
+                            <Box sx={{ width: '100%', height: '1px', borderTop: '1px solid #f1f1f1' }} />
+                        )}
+                    </Box>
                     <MyTextField
-                        sx={{ marginBottom: '2vh' }}
+                        sx={{ marginTop: '15px' }}
                         size="small"
                         label="Enter Phone Number"
-                        required
                         fullWidth
                         name="phonenumber"
                         type="number"
@@ -124,37 +154,26 @@ export default function AddUser({ setAddUser }) {
                         autoComplete="phonenumber"
                     />
                     <MyTextField
-                        sx={{ marginBottom: '2vh' }}
+                        sx={{ marginTop: '15px' }}
                         size="small"
                         label="Enter address"
-                        required
                         fullWidth
                         name="address"
                         type=""
                         id="address"
                         autoComplete="address"
                     />
-                    <FormLabel
-                        id="
-                    "
-                    >
-                        Gender
-                    </FormLabel>
+                    <FormLabel id="gender">Gender</FormLabel>
                     <RadioGroup defaultValue="Female" row aria-labelledby="gender" name="gender">
                         <FormControlLabel value="Female" control={<Radio />} label="Female" />
                         <FormControlLabel value="Male" control={<Radio />} label="Male" />
                         <FormControlLabel value="Other" control={<Radio />} label="Other" />
                     </RadioGroup>
-                    <FormLabel
-                        id="
-                    "
-                    >
-                        Position
-                    </FormLabel>
-                    <RadioGroup defaultValue="doctor" row aria-labelledby="position" name="position">
-                        <FormControlLabel disabled value="root" control={<Radio />} label="Root" />
-                        <FormControlLabel value="admin" control={<Radio />} label="Admin" />
-                        <FormControlLabel value="doctor" control={<Radio />} label="Doctor" />
+                    <FormLabel id="position">Position</FormLabel>
+                    <RadioGroup defaultValue="Doctor" row aria-labelledby="position" name="position">
+                        <FormControlLabel disabled value="Root" control={<Radio />} label="Root" />
+                        <FormControlLabel value="Admin" control={<Radio />} label="Admin" />
+                        <FormControlLabel value="Doctor" control={<Radio />} label="Doctor" />
                     </RadioGroup>
                     <Button primary className="btn" type="submit">
                         Add

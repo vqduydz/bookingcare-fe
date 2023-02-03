@@ -14,3 +14,22 @@ export const login = (param) => {
     const url = '/login';
     return axiosService.post(url, param);
 };
+
+export const addNewUser = (dataUser) => {
+    const url = `/user`;
+    return axiosService.post(url, dataUser);
+};
+
+export const updateUser = (dataUpdate) => {
+    const url = `/user-update`;
+    return axiosService.patch(url, dataUpdate);
+};
+
+// export const deleteUser = (id) => {
+//     const url = `/user-delete?id=${id}`;
+//     return axiosService.get(url);
+// };
+export const deleteUser = (id) => {
+    const url = `/user-delete`;
+    return axiosService.delete(url, { data: { id } });
+};

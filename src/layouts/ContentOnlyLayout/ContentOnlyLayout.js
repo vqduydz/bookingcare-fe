@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
-import Content from '../Content';
 
+import Content from '../Content';
 import styles from './ContentOnlyLayout.module.scss';
 
 const cx = classNames.bind(styles);
