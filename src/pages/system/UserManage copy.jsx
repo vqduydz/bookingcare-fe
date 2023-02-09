@@ -11,35 +11,20 @@ import {
 } from '@mui/material';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Loading } from '_/components';
+import { MyButton, Loading } from '_/components';
 import { muiCustomStyles } from '_/components/CustomComponents/CustomMui';
+import { useAuth } from '_/context/AuthContext';
 import { useThemMui } from '_/context/ThemeMuiContext';
 import { getUser } from '_/redux/slices';
-import { selector } from '_/redux/selector';
-import AddUser from './AddUser';
+import CreateNewUser from './CreateNewUser';
 import Edit from './Edit';
 import Header from './Header';
 import Row from './Row';
+import { styleBtn } from './styleBtn';
 
-const styleBtn = {
-    '& .btn': {
-        marginBottom: '0 ',
-        width: 'unset ',
-        boxShadow: 'unset ',
-        borderRadius: '3px',
-        backgroundColor: '#eee',
-        '&:focus': { outline: 'none ', outlineOffset: 'unset ' },
-        '&:hover': {
-            background: '#000 !important',
-            borderRadius: '3px !important',
-            '& *': { color: '#fff !important' },
-        },
-    },
-};
-
-export default function UserManager() {
+export default function UserManage() {
     const [edit, setEdit] = useState({ stt: false, value: {} });
     const [addUser, setAddUser] = useState(false);
     const [overLay, setOverLay] = useState(false);
@@ -48,7 +33,7 @@ export default function UserManager() {
     const { loading } = useThemMui();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const currentUser = useSelector(selector.currentUser);
+    const { currentUser } = useAuth();
 
     useEffect(() => {
         if (!sideNav && !addUser && !edit.stt) {
@@ -72,14 +57,30 @@ export default function UserManager() {
     }, [loading, currentUser]);
 
     return (
-        <Box sx={{ ...muiCustomStyles, ...styleBtn }}>
+        <Box sx={{ ...muiCustomStyles, width: 'calc(100% - 0px)' }}>
             {loading && <Loading />}
-            {currentUser && (
-                <Header setAddUser={setAddUser} sideNav={sideNav} setSideNav={setSideNav} currentUser={currentUser} />
-            )}
-            <Box sx={{ minWidth: '768px', position: 'relative', mt: '40px' }}>
-                <TableContainer sx={{ padding: '10px' }} component={Paper}>
-                    <Typography variant="h4">Current user list</Typography>
+            <Box sx={{ minWidth: '768px', position: 'relative', mt: '80px' }}>
+                <TableContainer sx={{ padding: '10px', boxShadow: 'unset' }} component={Paper}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            '&  .btn': {
+                                fontSize: '1.2rem',
+                                padding: '10px',
+                                '& *': { justifyContent: 'center' },
+                            },
+                        }}
+                    >
+                        <Typography variant="h4">Current user list</Typography>{' '}
+                        <MyButton
+                            onClick={() => setAddUser(true)}
+                            style={{ padding: '3px 8px' }}
+                            className="btn add-btn"
+                        >
+                            Add new user
+                        </MyButton>
+                    </Box>
                     <hr style={{ marginTop: '5px', marginBottom: '5px', border: 0, borderTop: '1px solid #000' }} />
                     <Table
                         sx={{
@@ -137,7 +138,7 @@ export default function UserManager() {
                 />
             )}
             {edit.stt && <Edit setEdit={setEdit} edit={edit} />}
-            {addUser && <AddUser setAddUser={setAddUser} edit={edit} />}
+            {addUser && <CreateNewUser setAddUser={setAddUser} edit={edit} />}
         </Box>
     );
 }

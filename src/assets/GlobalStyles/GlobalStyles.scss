@@ -9,7 +9,7 @@
     --nen-xam: #f9f9f9;
     --nen-trang: #fff;
     --nen-am: #fcfaf6;
-    --mau-bc-16: #45c3d2;
+    --mau-bc-16: hwb(186 0% 0%);
     --mau-sam: #333;
     --mau-chu-dieuhuong: #fff;
     --nen-dieuhuong: var(--mau-bc-16);
@@ -19,6 +19,7 @@
 }
 
 * {
+    font-family: var(--font-family) !important;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -89,7 +90,6 @@ a[href] {
     }
 }
 .slick-arrow:before {
-    font-family: 'Glyphicons Halflings' !important;
     font-style: normal;
     font-weight: 400;
     background: #fff;
@@ -99,9 +99,11 @@ a[href] {
     color: #959595 !important;
 }
 .slick-next:before {
+    font-family: 'Glyphicons Halflings';
     content: '\e258' !important;
 }
 .slick-prev:before {
+    font-family: 'Glyphicons Halflings';
     content: '\e257' !important;
 }
 .slick-prev.slick-disabled:before,
@@ -119,4 +121,9 @@ a[href] {
 }
 .slick-list {
     margin: 0 -2px;
+}
+
+/////
+.SnackbarItem-contentRoot {
+    font-size: 1.4rem !important;
 }

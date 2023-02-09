@@ -15,7 +15,7 @@ export const login = (param) => {
     return axiosService.post(url, param);
 };
 
-export const addNewUser = (dataUser) => {
+export const createNewUser = (dataUser) => {
     const url = `/user`;
     return axiosService.post(url, dataUser);
 };

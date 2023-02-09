@@ -1,6 +1,7 @@
-import { Box } from '@mui/material';
-import { Button } from '_/components';
+import { Box, Typography } from '@mui/material';
+import { MyButton } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
+import { useAuth } from '_/context/AuthContext';
 import AuthWrapper from './AuthWrapper';
 
 function ForgotPassword() {
@@ -12,13 +13,16 @@ function ForgotPassword() {
         });
     };
 
+    const { text } = useAuth();
+    if (!text) return;
+    const { login } = text;
     return (
         <AuthWrapper>
             <form onSubmit={handleSubmit}>
                 <MyTextField
-                    sx={{ marginBottom: '2vh' }}
+                    sx={{ margin: '15px 0' }}
                     size="small"
-                    label="Enter Email"
+                    label={login.enter_email}
                     required
                     fullWidth
                     id="email"
@@ -27,19 +31,19 @@ function ForgotPassword() {
                     type="email"
                     autoFocus
                 />
-                <Button className="btn" primary type="submit">
-                    Forgot password?
-                </Button>
+                <MyButton fontSize={1.5} effect className="btn" type="submit" style={{ width: '100%' }}>
+                    {login.forgot_password}
+                </MyButton>
             </form>
-            <Box sx={{ '& *': { fontSize: '14px' } }}>
+            <Box sx={{ mt: '10px', '& *': { fontSize: '14px' } }}>
                 <Box sx={{ display: 'inline-flex' }}>
-                    <Button text to={'/login'}>
-                        Log in
-                    </Button>
-                    ---
-                    <Button text to={'/signup'}>
-                        Sign up new user
-                    </Button>
+                    <MyButton effect to={'/login'} text>
+                        {login.login}
+                    </MyButton>
+                    <Typography sx={{ margin: '0 5px', display: 'flex', alignItems: 'center' }}>----</Typography>
+                    <MyButton effect to={'/signup'} text>
+                        {login.create_new_user}
+                    </MyButton>
                 </Box>
             </Box>
         </AuthWrapper>

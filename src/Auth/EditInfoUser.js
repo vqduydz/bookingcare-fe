@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import images from '_/assets/img';
 import { MyTextField } from '_/components/CustomComponents/CustomComponents';
-import { Button } from '_/components/subUI';
+import { MyButton } from '_/components/subUI';
 import { useDataStore } from '../../contexts/DataStoreContext';
 import removeVietnameseTones from '../removeVietnameseTones';
 import styles from './Auth.modelu.scss';
@@ -143,12 +143,12 @@ function EditInfoUser() {
                         />
                     </div>
 
-                    <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+                    <FormLabel id="demo-row-radio-MyButtons-group-label">Gender</FormLabel>
 
                     <RadioGroup
                         row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
+                        aria-labelledby="demo-row-radio-MyButtons-group-label"
+                        name="row-radio-MyButtons-group"
                         value={gender}
                         onChange={(e) => {
                             const value = e.target.value;
@@ -208,7 +208,7 @@ function EditInfoUser() {
                         />
                     </RadioGroup>
 
-                    <FormLabel id="demo-row-radio-buttons-group-label">Customs Avatar</FormLabel>
+                    <FormLabel id="demo-row-radio-MyButtons-group-label">Customs Avatar</FormLabel>
 
                     <RadioGroup
                         sx={{
@@ -216,8 +216,8 @@ function EditInfoUser() {
                             flexDirection: 'column',
                         }}
                         row
-                        aria-labelledby="demo-row-radio-buttons-group-label"
-                        name="row-radio-buttons-group"
+                        aria-labelledby="demo-row-radio-MyButtons-group-label"
+                        name="row-radio-MyButtons-group"
                         value={urlBox ? avatarSrc : avatar}
                         onChange={(e) => {
                             const value = e.target.value;
@@ -358,9 +358,9 @@ function EditInfoUser() {
                         />
                     </RadioGroup>
 
-                    <Button primary className={cx('auth-btn')} type="submit" onClick={handleSubmit}>
+                    <MyButton className={cx('auth-btn')} type="submit" onClick={handleSubmit}>
                         Submit
-                    </Button>
+                    </MyButton>
                 </FormControl>
             </div>
         </div>

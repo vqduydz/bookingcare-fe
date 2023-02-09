@@ -1,9 +1,11 @@
 import Box from '@mui/material/Box';
 import icon from '_/assets/icon';
-import { Button } from '_/components';
+import { MyButton } from '_/components';
 import { muiCustomStyles } from '_/components/CustomComponents/CustomMui';
+import { useAuth } from '_/context/AuthContext';
 
 export default function AuthWrapper({ children }) {
+    const { handleChangeLanguage, language } = useAuth();
     return (
         <Box
             sx={{
@@ -32,23 +34,60 @@ export default function AuthWrapper({ children }) {
         >
             <Box
                 sx={{
+                    zIndex: 1,
+                    position: 'absolute',
+                    right: 0,
+                    top: '1vh',
+                    display: 'flex',
+                    flexGrow: 0,
+                    '& .lg-btn': {
+                        color: '#fffs',
+                        padding: '5px 15px',
+                        mr: '1vh',
+                    },
+                    '& .lg-btn-active': { color: '#45c3d2' },
+                }}
+            >
+                <MyButton
+                    color={{ textColorBefore: '#fff' }}
+                    effect
+                    onClick={() => handleChangeLanguage('vi')}
+                    className={language === 'vi' ? 'lg-btn lg-btn-active' : 'lg-btn'}
+                >
+                    VN
+                </MyButton>
+                <MyButton
+                    color={{ textColorBefore: '#fff' }}
+                    effect
+                    onClick={() => handleChangeLanguage('en')}
+                    className={language === 'en' ? 'lg-btn lg-btn-active' : 'lg-btn'}
+                >
+                    EN
+                </MyButton>
+            </Box>
+            <Box
+                sx={{
                     borderRadius: { 768: '10px' },
-                    padding: '55px 20px 37px',
-                    maxWidth: { 768: '350px' },
+                    padding: '35px 20px 37px',
+                    maxWidth: { 768: '480px' },
                     width: '100%',
                     minWidth: '300px',
                     margin: '0 auto',
                     backgroundColor: '#fff',
-                    position: { 768: 'fixed' },
-                    top: '10%',
-                    left: '50%',
+                    position: 'fixed',
+                    top: { 768: '10px' },
+                    left: { 768: '50%' },
                     transform: { 768: 'translateX(-50%)' },
                     boxShadow: '0 0 10px 5px #00000012',
+                    height: { 0: '100%', 768: 'calc(100% - 20px)' },
+                    overflow: 'auto',
                 }}
             >
-                <Button
+                <MyButton
                     href="/"
                     style={{
+                        width: '100%',
+                        backgroundColor: 'transparent',
                         marginLeft: 'auto',
                         marginRight: 'auto',
                         height: '40px',
@@ -56,9 +95,10 @@ export default function AuthWrapper({ children }) {
                         backgroundImage: `url(${icon.logo})`,
                         backgroundPosition: 'center center',
                         backgroundRepeat: 'no-repeat',
-                        marginBottom: '5vh',
+                        marginBottom: '20px',
                     }}
                 />
+
                 <Box sx={{ ...muiCustomStyles }}>{children}</Box>
             </Box>
         </Box>

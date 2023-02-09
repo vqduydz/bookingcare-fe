@@ -1,41 +1,52 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { Box, Collapse, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
+import { Box, Collapse, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { MyButton } from '_/components';
 import { useThemMui } from '_/context/ThemeMuiContext';
-import { capitalize } from '_/features/capitalize';
 import { deleteUser } from '_/redux/slices';
+import { dateTimeFormate } from '_/utills';
 
 export default function Row(props) {
+    const { enqueueSnackbar } = useSnackbar();
     const dispatch = useDispatch();
     const { setLoading } = useThemMui();
     const { user, STT, setEdit } = props;
-    const { id, phonenumber, gender, address, firstName, lastName, position, email } = user;
+    const { id, phonenumber, gender, address, firstName, lastName, position, email, createdAt } = user;
 
     const [open, setOpen] = useState(false);
     const handleDelete = () => {
-        setLoading(true);
-
-        dispatch(deleteUser(id))
-            .unwrap()
-            .then((result) => setLoading(false));
+        // eslint-disable-next-line no-restricted-globals
+        if (confirm('Delete confirmation')) {
+            setLoading(true);
+            dispatch(deleteUser(id))
+                .then(unwrapResult)
+                .then((result) => {
+                    setLoading(false);
+                    console.log({ result });
+                    let message, variant;
+                    if (result.error) {
+                        message = result.error.message;
+                        variant = 'error';
+                    } else {
+                        message = result.data.message;
+                        variant = 'success';
+                    }
+                    setLoading(false);
+                    enqueueSnackbar(message, { variant });
+                })
+                .catch((e) => {
+                    setLoading(false);
+                    enqueueSnackbar('unknow error', { variant: 'error' });
+                });
+        } else {
+            enqueueSnackbar('Cancel delete', { variant: 'info' });
+        }
     };
-
-    const time = new Date(user?.createdAt);
-    const createdAt =
-        time.getDate() +
-        '-' +
-        (time.getMonth() + 1) +
-        '-' +
-        time.getFullYear() +
-        ' ' +
-        time.getHours() +
-        ':' +
-        time.getMinutes() +
-        ':' +
-        time.getSeconds();
 
     return (
         <>
@@ -51,15 +62,15 @@ export default function Row(props) {
                     '& > *': { borderBottom: 'unset' },
                 }}
             >
-                <TableCell sx={{ maxWidth: '10px' }} align="center">
+                <TableCell sx={{ width: '35px' }} align="center">
                     {STT}
                 </TableCell>
                 <TableCell component="th" scope="row">
                     {email}
                 </TableCell>
-                <TableCell align="right">{capitalize(`${firstName} ${lastName}`)}</TableCell>
+                <TableCell align="right">{`${firstName} ${lastName}`}</TableCell>
                 <TableCell align="right">{position}</TableCell>
-                <TableCell align="right">{createdAt}</TableCell>
+                <TableCell align="right">{dateTimeFormate(createdAt)}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -75,7 +86,9 @@ export default function Row(props) {
                                         <TableCell>Phone number</TableCell>
                                         <TableCell>Gender</TableCell>
                                         <TableCell align="right">Address</TableCell>
-                                        <TableCell align="right">Action</TableCell>
+                                        <TableCell sx={{ maxWidth: '100px', width: '100px' }} align="center">
+                                            Action
+                                        </TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -91,43 +104,44 @@ export default function Row(props) {
                                                 sx={{
                                                     display: 'flex',
                                                     '& .btn ': {
-                                                        padding: '0 2px',
+                                                        // padding: '0 2px',
                                                         '+ .btn': {
                                                             marginLeft: '5px',
                                                         },
                                                     },
-                                                    '& .text': {
-                                                        display: { 0: 'none', 768: 'block' },
-                                                        color: '#000',
-                                                    },
+
                                                     '& .icon': {
                                                         fontSize: '16px !important',
-                                                        display: { 0: 'block', 768: 'none' },
                                                     },
                                                     ' * ': {
                                                         borderRadius: '3px',
                                                     },
                                                 }}
                                             >
-                                                <IconButton
+                                                <MyButton
+                                                    effect
+                                                    color={{ mainColor: 'orange' }}
                                                     onClick={() => {
                                                         setEdit({ stt: true, value: user });
                                                     }}
-                                                    className="btn"
+                                                    className="btn edit-btn"
                                                     aria-label="delete"
                                                 >
                                                     <EditIcon className="icon" />
-                                                    <Typography className="text">Edit</Typography>
-                                                </IconButton>
-                                                <IconButton
+                                                </MyButton>
+                                                <MyButton
+                                                    effect
+                                                    color={{ mainColor: 'red' }}
+                                                    padding="2px 4px"
                                                     disabled={position === 'Root'}
                                                     onClick={handleDelete}
-                                                    className="btn"
+                                                    className={
+                                                        position === 'Root' ? ' btn del-btn disable' : ' btn del-btn'
+                                                    }
                                                     aria-label="delete"
                                                 >
                                                     <DeleteIcon className="icon" />
-                                                    <Typography className="text">Delete</Typography>
-                                                </IconButton>
+                                                </MyButton>
                                             </Box>
                                         </TableCell>
                                     </TableRow>

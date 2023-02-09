@@ -6,6 +6,7 @@ import icon from '_/assets/icon';
 import images from '_/assets/image';
 import { Button } from '_/components';
 import { Inner } from '_/components/CustomComponents/CustomMui';
+import { useAuth } from '_/context/AuthContext';
 import { ADS, BSNBTQ, BSTXQV, CKPB, CN, CSYTNB, DCBSVCSYT, SL } from '_/data/data';
 import Banner from './Banner';
 import Content from './Content';
@@ -26,6 +27,7 @@ function Home() {
             margin: '0 -5px',
         },
     };
+
     return (
         <Box>
             <Banner />

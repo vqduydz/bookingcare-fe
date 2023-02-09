@@ -1,4 +1,5 @@
 function currentUser(state) {
-    return state.currentUser?.currentUser;
+    return { currentUser: state.auth.currentUser, isLogeed: state.auth.isLogged, language: state.language.language };
 }
+
 export const selector = { currentUser };

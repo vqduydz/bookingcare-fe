@@ -1,4 +1,4 @@
-export function testImage(url) {
+function testImage(url) {
     return new Promise((resolve, reject) => {
         var timer,
             img = new Image();
@@ -19,3 +19,4 @@ export function testImage(url) {
         img.src = url;
     });
 }
+export default testImage;

@@ -1,15 +1,19 @@
 import { FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Button } from '_/components';
+import { MyButton } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
 import { useThemMui } from '_/context/ThemeMuiContext';
-import { addNewUser } from '_/redux/slices';
+import { createNewUser } from '_/redux/slices';
+import { capitalize } from '_/utills';
 
-export default function AddUser({ setAddUser }) {
+export default function CreateNewUser({ setAddUser }) {
+    const { enqueueSnackbar } = useSnackbar();
+
     const dispatch = useDispatch();
     const { setLoading } = useThemMui();
     const [notif, setNotif] = useState();
@@ -19,8 +23,8 @@ export default function AddUser({ setAddUser }) {
         setLoading(true);
         const data = new FormData(event.currentTarget);
         const dataUser = {
-            firstName: data.get('firstName'),
-            lastName: data.get('lastName'),
+            firstName: capitalize(data.get('firstName')),
+            lastName: capitalize(data.get('lastName')),
             email: data.get('email'),
             password: data.get('password'),
             confirmpassword: data.get('confirmpassword'),
@@ -28,19 +32,32 @@ export default function AddUser({ setAddUser }) {
             address: data.get('address'),
             gender: data.get('gender'),
             position: data.get('position'),
-            createDate: new Date().getTime(),
         };
 
         if (dataUser.password !== dataUser.confirmpassword) {
-            setNotif('Password & confirmpassword noy match');
+            enqueueSnackbar('Password & confirmpassword not match', { variant: 'error' });
             setLoading(false);
             return;
         } else
-            dispatch(addNewUser(dataUser))
+            dispatch(createNewUser(dataUser))
                 .then(unwrapResult)
                 .then((result) => {
-                    setAddUser();
                     setLoading(false);
+                    console.log({ result });
+                    let message, variant;
+                    if (result.error) {
+                        message = result.error.message;
+                        variant = 'error';
+                    } else {
+                        message = result.data.message;
+                        variant = 'success';
+                        setAddUser();
+                    }
+                    enqueueSnackbar(message, { variant });
+                })
+                .catch((e) => {
+                    setAddUser();
+                    enqueueSnackbar('unknow error', { variant: 'error' });
                 });
     };
 
@@ -75,7 +92,7 @@ export default function AddUser({ setAddUser }) {
                 }}
             >
                 <Typography sx={{ fontWeight: 'bold' }} variant="h4">
-                    Add new user
+                    Create New User
                 </Typography>
                 <form onSubmit={handleSubmit}>
                     <MyTextField
@@ -175,9 +192,14 @@ export default function AddUser({ setAddUser }) {
                         <FormControlLabel value="Admin" control={<Radio />} label="Admin" />
                         <FormControlLabel value="Doctor" control={<Radio />} label="Doctor" />
                     </RadioGroup>
-                    <Button primary className="btn" type="submit">
-                        Add
-                    </Button>
+                    <MyButton
+                        effect
+                        color={{ mainColor: 'green' }}
+                        style={{ width: '100%', marginTop: '10px' }}
+                        type="submit"
+                    >
+                        Create
+                    </MyButton>
                 </form>
             </Box>
         </Box>

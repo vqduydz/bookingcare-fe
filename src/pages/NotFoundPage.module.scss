@@ -88,16 +88,21 @@
     }
 }
 
-a.button {
+.button {
     position: absolute;
     bottom: 1vmin;
-    padding: 6px 24px;
     color: inherit;
-
-    &:hover {
-        color: var(--main-color);
-        border-color: currentcolor;
-        background-color: #000000b8;
+    a {
+        padding: 6px 24px;
+        &:hover {
+            color: #fff;
+            border-color: currentcolor;
+            background-color: #000000b8;
+            text-decoration: none;
+        }
+        + a {
+            margin-left: 10px;
+        }
     }
 }
 

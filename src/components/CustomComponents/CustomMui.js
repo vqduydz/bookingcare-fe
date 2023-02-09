@@ -6,7 +6,7 @@ export const muiCustomStyles = {
         textTransform: 'capitalize',
     },
     '& a:focus,a:hover': {
-        textDecoration: 'underline',
+        // textDecoration: 'underline',
         outline: 'none',
         outlineOffset: 'none',
     },
@@ -24,19 +24,6 @@ export const muiCustomStyles = {
     },
     '& span.Mui-checked': {
         color: 'currentcolor !important',
-    },
-    '& .btn': {
-        marginBottom: '15px',
-        padding: '5px',
-        width: '100%',
-        boxShadow: '0 0 3px 1px #00000012',
-        '&:hover': {
-            backgroundColor: '#888888',
-        },
-        span: {
-            justifyContent: 'center',
-        },
-        '&:focus': { outline: 'none !important', outlineOffset: 'unset !important' },
     },
 };
 

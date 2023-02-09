@@ -1,11 +1,13 @@
 import { CssBaseline } from '@mui/material';
 import { StyledEngineProvider } from '@mui/material/styles';
+import { SnackbarProvider } from 'notistack';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import App from './App';
 import GlobalStyles from './assets/GlobalStyles';
+import AuthContextProvider from './context/AuthContext';
 import ThemeMuiContextProvider from './context/ThemeMuiContext';
 import { store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
@@ -14,14 +16,22 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <StrictMode>
         <StyledEngineProvider>
-            <ThemeMuiContextProvider>
-                <CssBaseline />
-                <GlobalStyles>
-                    <Provider store={store}>
-                        <App />
-                    </Provider>
-                </GlobalStyles>
-            </ThemeMuiContextProvider>
+            <SnackbarProvider
+                maxSnack={4}
+                autoHideDuration={3000}
+                anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+            >
+                <ThemeMuiContextProvider>
+                    <CssBaseline />
+                    <GlobalStyles>
+                        <Provider store={store}>
+                            <AuthContextProvider>
+                                <App />
+                            </AuthContextProvider>
+                        </Provider>
+                    </GlobalStyles>
+                </ThemeMuiContextProvider>
+            </SnackbarProvider>
         </StyledEngineProvider>
     </StrictMode>,
 );

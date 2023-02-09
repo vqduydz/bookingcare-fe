@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '_/components/subUI';
+import { MyButton } from '_/components/subUI';
 import styles from './Auth.modelu.scss';
 import { auth } from './firebase/firebaseConfig';
 
@@ -24,7 +24,7 @@ function Logout() {
     };
 
     return (
-        <Button
+        <MyButton
             text
             className={cx('user-popper-btn')}
             leftIcon={<ChevronRightIcon fontSize="large" />}
@@ -32,7 +32,7 @@ function Logout() {
             onClick={handleLogout}
         >
             Log out
-        </Button>
+        </MyButton>
     );
 }
 

@@ -1,27 +1,66 @@
+import { FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { useState } from 'react';
-import { Button } from '_/components';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { useSnackbar } from 'notistack';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { MyButton } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
+import { useAuth } from '_/context/AuthContext';
+import { useThemMui } from '_/context/ThemeMuiContext';
+import { login } from '_/redux/slices';
+import { routes } from '_/routes';
+import { capitalize } from '_/utills';
 import AuthWrapper from './AuthWrapper';
 
 export default function SignIn() {
-    const [value, setValue] = useState({ firstName: '', lastName: '', email: '', password: '' });
+    const { enqueueSnackbar } = useSnackbar();
+    const { setLoading } = useThemMui();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const handleSubmit = (event) => {
         event.preventDefault();
+        setLoading(true);
         const data = new FormData(event.currentTarget);
-        setValue({
-            firstName: data.get('firstName'),
-            lastName: data.get('lastName'),
+        const dataUser = {
+            firstName: capitalize(data.get('firstName')),
+            lastName: capitalize(data.get('lastName')),
             email: data.get('email'),
             password: data.get('password'),
-            confirmPassword: data.get('confirmPassword'),
-        });
+            confirmpassword: data.get('confirmpassword'),
+            phonenumber: data.get('phonenumber'),
+            address: data.get('address'),
+            gender: data.get('gender'),
+            birthday: data.get('birthday'),
+            position: 'Patient',
+        };
+
+        if (dataUser.password !== dataUser.confirmpassword) {
+            enqueueSnackbar('Password & confirmpassword not match!', {
+                variant: 'error',
+            });
+
+            setLoading(false);
+            return;
+        } else if (
+            new Date(dataUser.birthday).getFullYear() > new Date().getFullYear() ||
+            new Date(dataUser.birthday).getFullYear() < 1920
+        ) {
+            enqueueSnackbar('Birth year is illegal!', { variant: 'error' });
+            return;
+        } else
+            dispatch(login({ email: dataUser.email, password: dataUser.confirmpassword }))
+                .then(unwrapResult)
+                .then((res) =>
+                    res.error ? enqueueSnackbar(res.error.message, { variant: 'error' }) : navigate(routes.home),
+                );
     };
+
     return (
         <AuthWrapper>
             <form onSubmit={handleSubmit}>
                 <MyTextField
-                    sx={{ marginBottom: '2vh' }}
+                    sx={{ marginTop: '15px' }}
                     size="small"
                     label="First name"
                     required
@@ -33,7 +72,7 @@ export default function SignIn() {
                     autoFocus
                 />
                 <MyTextField
-                    sx={{ marginBottom: '2vh' }}
+                    sx={{ marginTop: '15px' }}
                     size="small"
                     label="Last name"
                     required
@@ -44,7 +83,7 @@ export default function SignIn() {
                     type=""
                 />
                 <MyTextField
-                    sx={{ marginBottom: '2vh' }}
+                    sx={{ marginTop: '15px' }}
                     size="small"
                     label="Enter Email"
                     required
@@ -55,7 +94,7 @@ export default function SignIn() {
                     type="email"
                 />
                 <MyTextField
-                    sx={{ marginBottom: '2vh' }}
+                    sx={{ marginTop: '15px' }}
                     size="small"
                     label="Enter Password"
                     required
@@ -66,27 +105,69 @@ export default function SignIn() {
                     autoComplete="current-password"
                 />
                 <MyTextField
-                    sx={{ marginBottom: '2vh' }}
+                    sx={{ marginTop: '15px' }}
                     size="small"
                     label="Confirm Password"
                     required
                     fullWidth
-                    name="confirmPassword"
+                    name="confirmpassword"
                     type="password"
-                    id="confirmPassword"
+                    id="confirmpassword"
                     autoComplete="current-password"
                 />
+                <MyTextField
+                    sx={{ marginTop: '15px' }}
+                    size="small"
+                    label="Enter Phone Number"
+                    fullWidth
+                    name="phonenumber"
+                    type="number"
+                    id="phonenumber"
+                    autoComplete="phonenumber"
+                />
+                <MyTextField
+                    sx={{ marginTop: '15px' }}
+                    size="small"
+                    label="Enter address"
+                    fullWidth
+                    name="address"
+                    type=""
+                    id="address"
+                    autoComplete="address"
+                />
+                <FormLabel sx={{ margin: '10px 0 0 0' }} htmlFor="birthday" id="gender">
+                    Birthday
+                </FormLabel>
+                <MyTextField
+                    required
+                    size="small"
+                    fullWidth
+                    name="birthday"
+                    type="date"
+                    id="birthday"
+                    autoComplete="birthday"
+                />
+                <FormLabel sx={{ margin: '10px 0 0 0' }} id="gender">
+                    Gender
+                </FormLabel>
+                <RadioGroup defaultValue="Female" row aria-labelledby="gender" name="gender">
+                    <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                    <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                    <FormControlLabel value="Other" control={<Radio />} label="Other" />
+                </RadioGroup>
 
-                <Button primary className="btn" type="submit">
-                    Sign up
-                </Button>
+                <MyButton fontSize={1.5} effect className="btn" type="submit" style={{ width: '100%' }}>
+                    Add
+                </MyButton>
             </form>
-            <Box sx={{ '& *': { fontSize: '14px' } }}>
+            <Box sx={{ mt: '10px', '& *': { fontSize: '14px' } }}>
                 <Box sx={{ display: 'inline-flex' }}>
-                    Have an account ?
-                    <Button to={'/login'} text>
+                    <Typography sx={{ margin: '0 5px', display: 'flex', alignItems: 'center' }}>
+                        Have an account ?
+                    </Typography>
+                    <MyButton effect to={'/login'} text>
                         Log in
-                    </Button>
+                    </MyButton>
                 </Box>
             </Box>
         </AuthWrapper>

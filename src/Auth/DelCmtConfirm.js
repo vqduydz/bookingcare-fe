@@ -4,7 +4,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import { Button } from '_/components/subUI';
+import { MyButton } from '_/components/subUI';
 import styles from './Auth.modelu.scss';
 
 const cx = classNames.bind(styles);
@@ -21,9 +21,9 @@ export default function DelCmtConfirm({ children, deleteComment, commentId, comm
     };
     return (
         <div className={cx('del-cmt-wrapper')}>
-            <Button onClick={handleClickOpen} className={cx('delete-btn')}>
+            <MyButton onClick={handleClickOpen} className={cx('delete-btn')}>
                 {children}
-            </Button>
+            </MyButton>
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -37,10 +37,10 @@ export default function DelCmtConfirm({ children, deleteComment, commentId, comm
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions sx={{ color: 'inherit', padding: '15px' }}>
-                        <Button onClick={handleClose} outline className={cx('disagree-btn')}>
+                        <MyButton onClick={handleClose} outline className={cx('disagree-btn')}>
                             Disagree
-                        </Button>
-                        <Button
+                        </MyButton>
+                        <MyButton
                             onClick={() => {
                                 deleteComment(commentId, commentPId);
                             }}
@@ -48,7 +48,7 @@ export default function DelCmtConfirm({ children, deleteComment, commentId, comm
                             className={cx('agree-btn')}
                         >
                             Agree
-                        </Button>
+                        </MyButton>
                     </DialogActions>
                 </div>
             </Dialog>

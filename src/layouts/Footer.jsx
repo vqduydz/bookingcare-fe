@@ -3,10 +3,10 @@ import PlaceIcon from '@mui/icons-material/Place';
 import { Box } from '@mui/material';
 import classNames from 'classnames/bind';
 import icon from '_/assets/icon';
-import { Button } from '_/components';
 import { Inner } from '_/components/CustomComponents/CustomMui';
 import styles from './Footer.module.scss';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
+import { MyButton } from '_/components';
 
 const cx = classNames.bind(styles);
 
@@ -22,7 +22,7 @@ function Footer() {
                 }}
             >
                 <Box sx={{ flex: 2, padding: '0 5px', borderBottom: { 0: 'solid 1px #ccc', 768: 'none' } }}>
-                    <Button style={{ padding: '0' }} href="/">
+                    <MyButton style={{ padding: '0' }} href="/">
                         <img
                             width="200"
                             height="44"
@@ -30,7 +30,7 @@ function Footer() {
                             data-src="/assets/icon/bookingcare-2020.svg"
                             alt="BookingCare/"
                         />
-                    </Button>
+                    </MyButton>
                     <Box
                         sx={{
                             mt: '10px',
@@ -55,7 +55,7 @@ function Footer() {
                             display: 'flex',
                         }}
                     >
-                        <Button
+                        <MyButton
                             style={{ padding: '0 6px', height: '40px', marginTop: '10px', maxWidth: '49%' }}
                             target="_blank"
                             href="http://online.gov.vn/Home/WebDetails/68563"
@@ -67,8 +67,8 @@ function Footer() {
                                 data-src="/assets/icon/bo-cong-thuong.svg"
                                 alt="Đã thông báo với bộ công thương"
                             />
-                        </Button>
-                        <Button
+                        </MyButton>
+                        <MyButton
                             style={{ padding: '0 6px', height: '40px', marginTop: '10px', maxWidth: '49%' }}
                             target="_blank"
                             href="http://online.gov.vn/Home/AppDetails/1101"
@@ -80,7 +80,7 @@ function Footer() {
                                 data-src="/assets/icon/bo-cong-thuong.svg"
                                 alt="Đã thông báo với bộ công thương"
                             />
-                        </Button>
+                        </MyButton>
                     </Box>
                 </Box>
                 <Box
@@ -91,30 +91,30 @@ function Footer() {
                         borderBottom: { 0: 'solid 1px #ccc', 768: 'none' },
                     }}
                 >
-                    <Button className={cx('btn')} href="/hop-tac-voi-bookingcare">
+                    <MyButton className={cx('btn')} href="/hop-tac-voi-bookingcare">
                         Liên hệ hợp tác
-                    </Button>
-                    <Button className={cx('btn')} href="/goi-chuyen-doi-so">
+                    </MyButton>
+                    <MyButton className={cx('btn')} href="/goi-chuyen-doi-so">
                         Gói chuyển đổi số doanh nghiệp
-                    </Button>
-                    <Button className={cx('btn')} href="/tuyen-dung">
+                    </MyButton>
+                    <MyButton className={cx('btn')} href="/tuyen-dung">
                         Tuyển dụng
-                    </Button>
-                    <Button className={cx('btn')} href="/benh-nhan-thuong-hoi">
+                    </MyButton>
+                    <MyButton className={cx('btn')} href="/benh-nhan-thuong-hoi">
                         Câu hỏi thường gặp
-                    </Button>
-                    <Button className={cx('btn')} href="/page/dieu-khoan-su-dung-p7">
+                    </MyButton>
+                    <MyButton className={cx('btn')} href="/page/dieu-khoan-su-dung-p7">
                         Điều khoản sử dụng
-                    </Button>
-                    <Button className={cx('btn')} href="/page/chinh-sach-bao-mat-p8">
+                    </MyButton>
+                    <MyButton className={cx('btn')} href="/page/chinh-sach-bao-mat-p8">
                         Chính sách Bảo mật
-                    </Button>
-                    <Button className={cx('btn')} href="/thong-tin/quy-trinh-ho-tro-giai-quyet-khieu-nai-p13">
+                    </MyButton>
+                    <MyButton className={cx('btn')} href="/thong-tin/quy-trinh-ho-tro-giai-quyet-khieu-nai-p13">
                         Quy trình hỗ trợ giải quyết khiếu nại
-                    </Button>
-                    <Button className={cx('btn')} href="/site/quyche">
+                    </MyButton>
+                    <MyButton className={cx('btn')} href="/site/quyche">
                         Quy chế hoạt động
-                    </Button>
+                    </MyButton>
                 </Box>
                 <Box sx={{ flex: 1, padding: '0 5px' }}>
                     <div>
@@ -137,17 +137,17 @@ function Footer() {
             </Inner>
             <Inner sx={{ fontSize: '1.4rem', '& * ': { fontSize: '1.4rem' }, padding: '15px' }}>
                 <SmartphoneIcon /> Tải ứng dụng BookingCare cho điện thoại hoặc máy tính bảng :
-                <Button className={cx('app-btn')} target="_blank" href="https://bookingcare.vn/app/android">
+                <MyButton className={cx('app-btn')} target="_blank" href="https://bookingcare.vn/app/android">
                     Android
-                </Button>
+                </MyButton>
                 -
-                <Button className={cx('app-btn')} target="_blank" href="https://bookingcare.vn/app/ios">
+                <MyButton className={cx('app-btn')} target="_blank" href="https://bookingcare.vn/app/ios">
                     iPhone/iPad
-                </Button>
+                </MyButton>
                 -
-                <Button className={cx('app-btn')} target="_blank" href="https://bookingcare.vn/app">
+                <MyButton className={cx('app-btn')} target="_blank" href="https://bookingcare.vn/app">
                     Khác
-                </Button>
+                </MyButton>
             </Inner>
             <Box
                 sx={{
@@ -161,22 +161,22 @@ function Footer() {
                         <small>© 2023 BookingCare.</small>
                     </Box>
                     <Box sx={{ display: 'flex', flex: 2, justifyContent: { 0: 'start', 768: 'flex-end' } }}>
-                        <Button
+                        <MyButton
                             style={{ margin: '10px 10px 10px 0' }}
                             className={cx('app-btn')}
                             target="_blank"
                             href="https://facebook.com/bookingcare"
                         >
                             <img width="32" height="32" src={icon.facebook} alt="Facebook/" />
-                        </Button>
-                        <Button
+                        </MyButton>
+                        <MyButton
                             style={{ margin: '10px 10px 10px 0' }}
                             className={cx('app-btn')}
                             target="_blank"
                             href="https://www.youtube.com/channel/UC9l2RhMEPCIgDyGCH8ijtPQ"
                         >
                             <img width="32" height="32" src={icon.youtube} alt="Youtube/" />
-                        </Button>
+                        </MyButton>
                     </Box>
                 </Inner>
             </Box>

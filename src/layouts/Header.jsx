@@ -11,11 +11,13 @@ import { useState } from 'react';
 import icon from '_/assets/icon';
 import images from '_/assets/image';
 import { Button } from '_/components';
+import { useAuth } from '_/context/AuthContext';
 import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Header() {
+    const { handleChangeLanguage, language } = useAuth();
     const [anchorElNav, setAnchorElNav] = useState();
     const [anchorElUser, setAnchorElUser] = useState();
     const handleOpenNavMenu = (event) => {
@@ -115,10 +117,37 @@ function Header() {
                     </Box>
                     <Box
                         sx={{
+                            display: 'flex',
+                            flexGrow: 0,
+                            '& .lg-btn': {
+                                color: '#45c3d2',
+                            },
+                            '& .lg-btn-active': { color: 'red' },
+                        }}
+                    >
+                        <Button
+                            primary
+                            onClick={() => handleChangeLanguage('vi')}
+                            style={{ padding: 0 }}
+                            className={language === 'vi' ? 'lg-btn lg-btn-active' : 'lg-btn'}
+                        >
+                            VN
+                        </Button>
+                        <Button
+                            primary
+                            onClick={() => handleChangeLanguage('en')}
+                            style={{ marginLeft: '5px', padding: 0 }}
+                            className={language === 'en' ? 'lg-btn lg-btn-active' : 'lg-btn'}
+                        >
+                            EN
+                        </Button>
+                    </Box>
+                    <Box
+                        sx={{
                             flexGrow: 0,
                         }}
                     >
-                        <Button to={'#'}>
+                        <Button to={'#'} style={{ marginLeft: '5px', padding: '0 10px' }}>
                             <Typography
                                 variant="h5"
                                 sx={{ color: '#969495', lineHeight: '30px', alignItems: 'center', display: 'flex' }}

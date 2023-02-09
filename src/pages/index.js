@@ -3,4 +3,4 @@ export { default as Login } from '_/pages/auth/Login';
 export { default as Signup } from '_/pages/auth/Signup';
 export { default as ForgotPassword } from '_/pages/auth/ForgotPassword';
 export { default as NotFoundPage } from '_/pages/NotFoundPage';
-export { default as UserManager } from '_/pages/auth/UserManager';
+export { default as UserManage } from '_/pages/system/UserManage';

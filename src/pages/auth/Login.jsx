@@ -1,41 +1,43 @@
-import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { useState } from 'react';
+import { useSnackbar } from 'notistack';
+import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '_/components';
+import { MyButton } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
 import { login } from '_/redux/slices';
+import { routes } from '_/routes';
 import AuthWrapper from './AuthWrapper';
 
 export default function SignIn() {
+    const { enqueueSnackbar } = useSnackbar();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [notif, setNotif] = useState();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setNotif();
         const data = new FormData(e.currentTarget);
         const userData = {
             email: data.get('email'),
             password: data.get('password'),
         };
-        dispatch(login(userData));
 
         dispatch(login(userData))
             .then(unwrapResult)
-            .then((res) => (res.error ? setNotif(res.error.message) : navigate('/usermanager')));
+            .then((res) =>
+                res.error ? enqueueSnackbar(res.error.message, { variant: 'error' }) : navigate(routes.manage),
+            );
     };
 
     return (
         <AuthWrapper>
             <form onSubmit={handleSubmit}>
                 <MyTextField
-                    sx={{ marginBottom: '2vh' }}
+                    sx={{ marginTop: '15px' }}
                     size="small"
-                    label="Enter Email"
+                    label=<FormattedMessage id="login.enter-email" />
                     required
                     fullWidth
                     id="email"
@@ -45,8 +47,9 @@ export default function SignIn() {
                     autoFocus
                 />
                 <MyTextField
+                    sx={{ margin: '15px 0' }}
                     size="small"
-                    label="Enter Password"
+                    label=<FormattedMessage id="login.enter-password" />
                     required
                     fullWidth
                     name="password"
@@ -54,39 +57,31 @@ export default function SignIn() {
                     id="password"
                     autoComplete="current-password"
                 />
-                <Box sx={{ height: '1.3rem', marginTop: '1vh' }}>
-                    {notif && (
-                        <Typography sx={{ color: 'red', height: '100%', fontSize: '1.2rem' }} variant="body2">
-                            {notif}
-                        </Typography>
-                    )}
-                </Box>
-                <FormControlLabel
-                    sx={{ display: 'flex' }}
-                    control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
-                />
 
-                <Button primary className="btn" type="submit">
-                    Log in
-                </Button>
+                <MyButton color={{ mainColor: 'green' }} fontSize={1.5} effect type="submit" style={{ width: '100%' }}>
+                    <FormattedMessage id="login.login" />
+                </MyButton>
             </form>
-            <Box sx={{ '& *': { fontSize: '14px' } }}>
-                <Button
+            <Box sx={{ mt: '10px', '& *': { fontSize: '14px' } }}>
+                <MyButton
+                    effect
                     to={'/forgotpassword'}
                     text
+                    color={{ subColor: 'red ' }}
                     style={{
                         padding: 0,
                     }}
                 >
-                    Forgot Password ?
-                </Button>
+                    <FormattedMessage id="login.forgot-password" /> ?
+                </MyButton>
 
                 <Box sx={{ display: 'inline-flex' }}>
-                    Don't have an account ?
-                    <Button to={'/signup'} text>
-                        Sign up
-                    </Button>
+                    <Typography sx={{ margin: '0 5px', display: 'flex', alignItems: 'center' }}>
+                        <FormattedMessage id="login.have-not-account" /> ?
+                    </Typography>
+                    <MyButton effect color={{ subColor: 'red ' }} to={'/signup'} text>
+                        <FormattedMessage id="login.signup" />
+                    </MyButton>
                 </Box>
             </Box>
         </AuthWrapper>

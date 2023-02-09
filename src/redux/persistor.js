@@ -14,7 +14,7 @@ const persistConfig = {
     key: 'currentUser',
     version: 1,
     whiteList: ['currentUser'],
-    blacklist: ['users'],
+    // blacklist: ['users'],
 };
 const reducers = combineReducers({
     users: usersReducer,

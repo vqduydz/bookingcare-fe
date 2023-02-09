@@ -1,15 +1,19 @@
 import { FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 import Box from '@mui/material/Box';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
 
-import { Button } from '_/components';
+import { MyButton } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
 import { useThemMui } from '_/context/ThemeMuiContext';
 import { updateUser } from '_/redux/slices';
+import { capitalize } from '_/utills';
 
 export default function Edit({ edit, setEdit }) {
     const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+
     const { value } = edit;
     const { id, firstName, lastName, phonenumber, address, gender, position } = value;
     const { setLoading } = useThemMui();
@@ -19,8 +23,8 @@ export default function Edit({ edit, setEdit }) {
         const data = new FormData(event.currentTarget);
         const dataUpdate = {
             id,
-            firstName: data.get('firstName'),
-            lastName: data.get('lastName'),
+            firstName: capitalize(data.get('firstName')),
+            lastName: capitalize(data.get('lastName')),
             phonenumber: data.get('phonenumber'),
             gender: data.get('gender'),
             address: data.get('address'),
@@ -30,8 +34,22 @@ export default function Edit({ edit, setEdit }) {
         dispatch(updateUser(dataUpdate))
             .then(unwrapResult)
             .then((result) => {
-                setEdit({ stt: false, value: {} });
                 setLoading(false);
+                console.log({ result });
+                let message, variant;
+                if (result.error) {
+                    message = result.error.message;
+                    variant = 'error';
+                } else {
+                    message = result.data.message;
+                    variant = 'success';
+                    setEdit({ stt: false, value: {} });
+                }
+                enqueueSnackbar(message, { variant });
+            })
+            .catch((e) => {
+                setEdit({ stt: false, value: {} });
+                enqueueSnackbar('unknow error', { variant: 'error' });
             });
     };
     return (
@@ -140,9 +158,14 @@ export default function Edit({ edit, setEdit }) {
                         />
                     </RadioGroup>
 
-                    <Button primary className="btn" type="submit">
+                    <MyButton
+                        effect
+                        color={{ mainColor: 'orange' }}
+                        style={{ width: '100%', marginTop: '10px' }}
+                        type="submit"
+                    >
                         Update
-                    </Button>
+                    </MyButton>
                 </form>
             </Box>
         </Box>
