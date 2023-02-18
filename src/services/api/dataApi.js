@@ -10,18 +10,37 @@ export const userApi = (id) => {
     }
 };
 
-export const login = (param) => {
+export const getTokenLoginApi = (param) => {
     const url = '/login';
     return axiosService.post(url, param);
 };
 
-export const createNewUser = (dataUser) => {
+export const forgotPasswordApi = (param) => {
+    const url = '/forgot-password';
+    return axiosService.post(url, param);
+};
+
+export const resetPasswordApi = (token, password) => {
+    const url = `reset-password/${token}`;
+    return axiosService.patch(url, password);
+};
+
+export const loginApi = (token) => {
+    const url = '/login';
+    return axiosService.get(url, {
+        headers: {
+            Authorization: 'Bearer ' + token,
+        },
+    });
+};
+
+export const createNewUserApi = (dataUser) => {
     const url = `/user`;
     return axiosService.post(url, dataUser);
 };
 
-export const updateUser = (dataUpdate) => {
-    const url = `/user-update`;
+export const updateUserApi = (dataUpdate) => {
+    const url = `/user`;
     return axiosService.patch(url, dataUpdate);
 };
 
@@ -29,7 +48,7 @@ export const updateUser = (dataUpdate) => {
 //     const url = `/user-delete?id=${id}`;
 //     return axiosService.get(url);
 // };
-export const deleteUser = (id) => {
-    const url = `/user-delete`;
+export const deleteUserApi = (id) => {
+    const url = `/user`;
     return axiosService.delete(url, { data: { id } });
 };

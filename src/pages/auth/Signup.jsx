@@ -1,6 +1,7 @@
 import { FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { unwrapResult } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +9,7 @@ import { MyButton } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
 import { useAuth } from '_/context/AuthContext';
 import { useThemMui } from '_/context/ThemeMuiContext';
-import { login } from '_/redux/slices';
+import { createNewUser, login } from '_/redux/slices';
 import { routes } from '_/routes';
 import { capitalize } from '_/utills';
 import AuthWrapper from './AuthWrapper';
@@ -18,7 +19,7 @@ export default function SignIn() {
     const { setLoading } = useThemMui();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
         const data = new FormData(event.currentTarget);
@@ -28,18 +29,18 @@ export default function SignIn() {
             email: data.get('email'),
             password: data.get('password'),
             confirmpassword: data.get('confirmpassword'),
-            phonenumber: data.get('phonenumber'),
             address: data.get('address'),
             gender: data.get('gender'),
             birthday: data.get('birthday'),
-            position: 'Patient',
+            phoneNumber: data.get('phoneNumber'),
+            image: data.get('image'),
+            role: 'root',
         };
 
         if (dataUser.password !== dataUser.confirmpassword) {
             enqueueSnackbar('Password & confirmpassword not match!', {
                 variant: 'error',
             });
-
             setLoading(false);
             return;
         } else if (
@@ -48,12 +49,18 @@ export default function SignIn() {
         ) {
             enqueueSnackbar('Birth year is illegal!', { variant: 'error' });
             return;
-        } else
-            dispatch(login({ email: dataUser.email, password: dataUser.confirmpassword }))
-                .then(unwrapResult)
-                .then((res) =>
-                    res.error ? enqueueSnackbar(res.error.message, { variant: 'error' }) : navigate(routes.home),
-                );
+        } else {
+            const res = await dispatch(createNewUser(dataUser));
+            res.payload.error
+                ? enqueueSnackbar(res.payload.error, { variant: 'error' })
+                : enqueueSnackbar('ok', { variant: 'success' });
+        }
+
+        // dispatch(login({ email: dataUser.email, password: dataUser.confirmpassword }))
+        //     .then(unwrapResult)
+        //     .then((res) =>
+        //         res.error ? enqueueSnackbar(res.error.message, { variant: 'error' }) : navigate(routes.home),
+        //     );
     };
 
     return (
@@ -120,10 +127,10 @@ export default function SignIn() {
                     size="small"
                     label="Enter Phone Number"
                     fullWidth
-                    name="phonenumber"
+                    name="phoneNumber"
                     type="number"
-                    id="phonenumber"
-                    autoComplete="phonenumber"
+                    id="phoneNumber"
+                    autoComplete="phoneNumber"
                 />
                 <MyTextField
                     sx={{ marginTop: '15px' }}

@@ -2,7 +2,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import TouchAppIcon from '@mui/icons-material/TouchApp';
 import { Box } from '@mui/material';
 import classNames from 'classnames/bind';
-import { MyButton } from '_/components';
+import { Button } from '_/components';
 
 import styles from './NotFoundPage.module.scss';
 
@@ -17,13 +17,13 @@ function NotFoundPage() {
                 <SettingsIcon sx={{ fontSize: '40vmin' }} className={cx('cog2')} />
                 <h1 className={cx('second-four')}>4</h1>
                 <p className={cx('wrong-para')}>Uh Oh! Page not found!</p>
-                <Box className={cx('MyButton')}>
-                    <MyButton outline to={'/'}>
+                <Box className={cx('button')}>
+                    <Button outline to={'/'}>
                         Go to home <TouchAppIcon />
-                    </MyButton>
-                    <MyButton outline to={'/login'}>
+                    </Button>
+                    <Button outline to={'/login'}>
                         Go to login <TouchAppIcon />
-                    </MyButton>
+                    </Button>
                 </Box>
             </div>
             <div className={cx('bottom')}></div>

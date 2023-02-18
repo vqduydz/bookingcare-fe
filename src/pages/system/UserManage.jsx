@@ -12,10 +12,8 @@ import {
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { MyButton, Loading } from '_/components';
+import { Loading, MyButton } from '_/components';
 import { muiCustomStyles } from '_/components/CustomComponents/CustomMui';
-import { useAuth } from '_/context/AuthContext';
 import { useThemMui } from '_/context/ThemeMuiContext';
 import { getUser } from '_/redux/slices';
 import CreateNewUser from './CreateNewUser';
@@ -30,8 +28,6 @@ export default function UserManage() {
     const [allUser, setAllUser] = useState([]);
     const { loading } = useThemMui();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { currentUser } = useAuth();
 
     useEffect(() => {
         if (!sideNav && !addUser && !edit.stt) {
@@ -42,17 +38,14 @@ export default function UserManage() {
     }, [addUser, edit.stt, sideNav]);
 
     useEffect(() => {
-        if ((() => JSON.stringify(currentUser) === '{}')() || !currentUser) {
-            navigate('/login');
-            return;
-        }
         dispatch(getUser())
             .then(unwrapResult)
             .then((result) => {
-                setAllUser(result.data?.data);
+                console.log(result);
+                setAllUser(result.user);
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loading, currentUser]);
+    }, [loading]);
 
     return (
         <Box sx={{ ...muiCustomStyles }}>
@@ -110,7 +103,7 @@ export default function UserManage() {
                                 </TableCell>
                                 <TableCell>Email address</TableCell>
                                 <TableCell align="right">Name</TableCell>
-                                <TableCell align="right">Position</TableCell>
+                                <TableCell align="right">Role</TableCell>
                                 <TableCell align="right">Create date</TableCell>
                             </TableRow>
                         </TableHead>

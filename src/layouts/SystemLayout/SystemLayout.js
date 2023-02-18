@@ -1,22 +1,19 @@
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { muiCustomStyles } from '_/components/CustomComponents/CustomMui';
 import { useAuth } from '_/context/AuthContext';
-import { useThemMui } from '_/context/ThemeMuiContext';
-import Edit from '_/pages/system/Edit';
 import CreateNewUser from '_/pages/system/CreateNewUser';
+import Edit from '_/pages/system/Edit';
 import Header from '_/pages/system/Header';
 import { styleBtn } from '_/pages/system/styleBtn';
-import Content from '../Content';
 
 import classNames from 'classnames/bind';
 
-import styles from './SystemLayout.module.scss';
 import { NotFoundPage, UserManage } from '_/pages';
-import { routes } from '_/routes';
 import { AManage, BManage, CManage, DManage, EManage } from '_/pages/system/AManage';
 import Manage from '_/pages/system/Manage';
+import { routes } from '_/routes';
+import styles from './SystemLayout.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -25,7 +22,6 @@ export default function SystemLayout({ children }) {
     const [addUser, setAddUser] = useState(false);
     const [overLay, setOverLay] = useState(false);
     const [sideNav, setSideNav] = useState(false);
-    const { loading } = useThemMui();
     const navigate = useNavigate();
     const { currentUser } = useAuth();
 
@@ -38,11 +34,11 @@ export default function SystemLayout({ children }) {
     }, [addUser, edit.stt, sideNav]);
 
     useEffect(() => {
-        if ((() => JSON.stringify(currentUser) === '{}')() || !currentUser) {
+        if (!currentUser) {
             navigate('/login');
             return;
         }
-    }, [loading, currentUser, navigate]);
+    }, [currentUser, navigate]);
     return (
         <Box sx={{ ...styleBtn }}>
             <div className={cx('wrapper')}>

@@ -11,9 +11,16 @@ export const axiosService = axios.create({
 });
 
 // Add a request interceptor
+
 axiosService.interceptors.request.use(
     async (config) => {
         // Do something before request is sent
+        // Get the token from local storage
+        const token = localStorage.getItem('token');
+        // If a token exists, add it to the headers
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
         return config;
     },
     function (error) {
@@ -21,15 +28,18 @@ axiosService.interceptors.request.use(
         return Promise.reject(error);
     },
 );
+
 // Add a response interceptor
 axiosService.interceptors.response.use(
     (response) => {
+        console.log({ response });
         if (response && response.data) {
             return response.data;
         }
         return response;
     },
     (error) => {
-        throw error;
+        console.log({ error });
+        throw error.response.data;
     },
 );

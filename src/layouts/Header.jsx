@@ -84,7 +84,7 @@ function Header() {
                             </Button>
                         </Menu>
                     </Box>
-                    <Button className={cx('padding-0')}>
+                    <Button to={'/'} className={cx('padding-0')}>
                         <img height="40" width="160" src={icon.logo} alt="logo" />
                     </Button>
                     <Box sx={{ flexGrow: 1 }}>

@@ -1,54 +1,53 @@
 import { Box, Typography } from '@mui/material';
 import { useSnackbar } from 'notistack';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MyButton } from '_/components';
 import { MyTextField } from '_/components/CustomComponents/CustomMui';
-import { useAuth } from '_/context/AuthContext';
-import { forgotPasswordApi } from '_/services/api/dataApi';
+import { routes } from '_/routes';
+import { resetPasswordApi } from '_/services/api/dataApi';
 import AuthWrapper from './AuthWrapper';
 
-function ForgotPassword() {
+function ResetPass() {
     const { enqueueSnackbar } = useSnackbar();
-
-    const handleSubmit = async (event) => {
+    const navigate = useNavigate();
+    const { token } = useParams();
+    const handleRS = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const dataUser = {
-            email: data.get('email'),
+        const password = {
+            password: data.get('resetPassword'),
         };
-        const res = await forgotPasswordApi(dataUser);
-        console.log(res);
-        enqueueSnackbar(res.message, { variant: 'success' });
+        const res = await resetPasswordApi(token, password);
+        await enqueueSnackbar(res.message, { variant: 'success' });
+        navigate(`/${routes.login}`);
     };
-
-    const { text } = useAuth();
-    const { login } = text;
     return (
         <AuthWrapper>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleRS}>
                 <MyTextField
                     sx={{ margin: '15px 0' }}
                     size="small"
-                    label={login.enter_email}
+                    label="enter new password"
                     required
                     fullWidth
-                    id="email"
-                    name="email"
-                    autoComplete="email"
-                    type="email"
+                    id="resetPassword"
+                    name="resetPassword"
+                    autoComplete="resetPassword"
+                    type="password"
                     autoFocus
                 />
                 <MyButton fontSize={1.5} effect className="btn" type="submit" style={{ width: '100%' }}>
-                    {login.forgot_password}
+                    Reset Password
                 </MyButton>
             </form>
             <Box sx={{ mt: '10px', '& *': { fontSize: '14px' } }}>
                 <Box sx={{ display: 'inline-flex' }}>
                     <MyButton effect to={'/login'} text>
-                        {login.login}
+                        login
                     </MyButton>
                     <Typography sx={{ margin: '0 5px', display: 'flex', alignItems: 'center' }}>----</Typography>
                     <MyButton effect to={'/signup'} text>
-                        {login.create_new_user}
+                        create_new_user
                     </MyButton>
                 </Box>
             </Box>
@@ -56,4 +55,4 @@ function ForgotPassword() {
     );
 }
 
-export default ForgotPassword;
+export default ResetPass;

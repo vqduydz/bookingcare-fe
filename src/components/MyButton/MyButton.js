@@ -15,6 +15,7 @@ const MyButton = ({
     padding = '',
     fontSize,
     // className
+    active = false,
     outline = false,
     filled = false,
     text = false,
@@ -47,6 +48,7 @@ const MyButton = ({
     }
 
     const classes = cx('dbe-btn', {
+        active,
         effect,
         filled,
         outline,

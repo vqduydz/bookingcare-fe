@@ -16,7 +16,7 @@ export default function Row(props) {
     const dispatch = useDispatch();
     const { setLoading } = useThemMui();
     const { user, STT, setEdit } = props;
-    const { id, phonenumber, gender, address, firstName, lastName, position, email, createdAt } = user;
+    const { id, phoneNumber, gender, address, firstName, lastName, role, email, createdAt } = user;
 
     const [open, setOpen] = useState(false);
     const handleDelete = () => {
@@ -27,13 +27,12 @@ export default function Row(props) {
                 .then(unwrapResult)
                 .then((result) => {
                     setLoading(false);
-                    console.log({ result });
                     let message, variant;
                     if (result.error) {
-                        message = result.error.message;
+                        message = result.error;
                         variant = 'error';
                     } else {
-                        message = result.data.message;
+                        message = result.message;
                         variant = 'success';
                     }
                     setLoading(false);
@@ -69,7 +68,7 @@ export default function Row(props) {
                     {email}
                 </TableCell>
                 <TableCell align="right">{`${firstName} ${lastName}`}</TableCell>
-                <TableCell align="right">{position}</TableCell>
+                <TableCell align="right">{role}</TableCell>
                 <TableCell align="right">{dateTimeFormate(createdAt)}</TableCell>
             </TableRow>
             <TableRow>
@@ -94,7 +93,7 @@ export default function Row(props) {
                                 <TableBody>
                                     <TableRow>
                                         <TableCell sx={{ paddingLeft: '1vh' }} component="th" scope="row">
-                                            {phonenumber}
+                                            {phoneNumber}
                                         </TableCell>
                                         <TableCell>{gender}</TableCell>
                                         <TableCell align="right">{address}</TableCell>
@@ -133,10 +132,10 @@ export default function Row(props) {
                                                     effect
                                                     color={{ mainColor: 'red' }}
                                                     padding="2px 4px"
-                                                    disabled={position === 'Root'}
+                                                    disabled={role === 'Root'}
                                                     onClick={handleDelete}
                                                     className={
-                                                        position === 'Root' ? ' btn del-btn disable' : ' btn del-btn'
+                                                        role === 'Root' ? ' btn del-btn disable' : ' btn del-btn'
                                                     }
                                                     aria-label="delete"
                                                 >

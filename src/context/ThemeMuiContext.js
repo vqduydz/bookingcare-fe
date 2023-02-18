@@ -91,28 +91,26 @@ function ThemeMuiContextProvider({ children }) {
                 ? {
                       // palette values for light mode
                       primary: {
-                          main: '#e0f7fa',
+                          main: '#fff ',
                       },
                       divider: lightBlue[700],
                       background: {
-                          default: 'var(--background-color)',
-                          paper: 'var(--background-color)',
+                          default: '#fff',
+                          paper: '#fff',
                       },
                       text: {
-                          primary: '#000',
-                          secondary: '#9e9e9e',
+                          primary: '#333',
                       },
                   }
                 : {
-                      primary: grey,
+                      primary: '#121212 ',
                       divider: grey[700],
                       background: {
-                          default: grey[900],
-                          paper: grey[900],
+                          default: '#121212 ',
+                          paper: '#121212 ',
                       },
                       text: {
                           primary: '#fff',
-                          secondary: '#9e9e9e',
                       },
                   }),
         },

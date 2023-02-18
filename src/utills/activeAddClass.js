@@ -2,7 +2,9 @@ export const activeAddClass = (className = '') => {
     let buttons = document.querySelectorAll(`.${className}`);
     buttons.forEach((button) => {
         button.addEventListener('click', function () {
-            buttons.forEach((btn) => btn.classList.remove('active'));
+            buttons.forEach((btn) => {
+                btn.classList.remove('active');
+            });
             this.classList.add('active');
             localStorage.setItem(className, this.innerText);
         });

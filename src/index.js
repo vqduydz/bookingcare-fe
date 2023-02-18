@@ -4,12 +4,13 @@ import { SnackbarProvider } from 'notistack';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import App from './App';
 import GlobalStyles from './assets/GlobalStyles';
 import AuthContextProvider from './context/AuthContext';
 import ThemeMuiContextProvider from './context/ThemeMuiContext';
-import { store } from './redux/store';
+import { persistor, store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -26,7 +27,9 @@ root.render(
                     <GlobalStyles>
                         <Provider store={store}>
                             <AuthContextProvider>
-                                <App />
+                                <PersistGate loading={null} persistor={persistor}>
+                                    <App />
+                                </PersistGate>
                             </AuthContextProvider>
                         </Provider>
                     </GlobalStyles>

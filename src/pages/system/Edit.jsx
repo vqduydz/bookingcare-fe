@@ -15,7 +15,7 @@ export default function Edit({ edit, setEdit }) {
     const { enqueueSnackbar } = useSnackbar();
 
     const { value } = edit;
-    const { id, firstName, lastName, phonenumber, address, gender, position } = value;
+    const { id, firstName, lastName, phoneNumber, address, gender, role } = value;
     const { setLoading } = useThemMui();
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -25,10 +25,10 @@ export default function Edit({ edit, setEdit }) {
             id,
             firstName: capitalize(data.get('firstName')),
             lastName: capitalize(data.get('lastName')),
-            phonenumber: data.get('phonenumber'),
+            phoneNumber: data.get('phoneNumber'),
             gender: data.get('gender'),
             address: data.get('address'),
-            position: position === 'Root' ? 'Root' : data.get('position'),
+            role: role === 'Root' ? 'Root' : data.get('role'),
         };
 
         dispatch(updateUser(dataUpdate))
@@ -38,16 +38,17 @@ export default function Edit({ edit, setEdit }) {
                 console.log({ result });
                 let message, variant;
                 if (result.error) {
-                    message = result.error.message;
+                    message = result.error;
                     variant = 'error';
                 } else {
-                    message = result.data.message;
+                    message = result.message;
                     variant = 'success';
                     setEdit({ stt: false, value: {} });
                 }
                 enqueueSnackbar(message, { variant });
             })
             .catch((e) => {
+                console.log(e);
                 setEdit({ stt: false, value: {} });
                 enqueueSnackbar('unknow error', { variant: 'error' });
             });
@@ -109,15 +110,15 @@ export default function Edit({ edit, setEdit }) {
                         type=""
                     />
                     <MyTextField
-                        defaultValue={phonenumber}
+                        defaultValue={phoneNumber}
                         sx={{ marginBottom: '2vh' }}
                         size="small"
                         label="Enter Phone Number"
                         fullWidth
-                        name="phonenumber"
+                        name="phoneNumber"
                         type="number"
-                        id="phonenumber"
-                        autoComplete="phonenumber"
+                        id="phoneNumber"
+                        autoComplete="phoneNumber"
                     />
                     <MyTextField
                         defaultValue={address}
@@ -136,22 +137,12 @@ export default function Edit({ edit, setEdit }) {
                         <FormControlLabel value="Male" control={<Radio />} label="Male" />
                         <FormControlLabel value="Other" control={<Radio />} label="Other" />
                     </RadioGroup>
-                    <FormLabel id="position">Position</FormLabel>
-                    <RadioGroup defaultValue={position} row aria-labelledby="position" name="position">
+                    <FormLabel id="role">Role</FormLabel>
+                    <RadioGroup defaultValue={role} row aria-labelledby="role" name="role">
+                        <FormControlLabel disabled={role === 'Root'} value="Root" control={<Radio />} label="Root" />
+                        <FormControlLabel disabled={role === 'Root'} value="Admin" control={<Radio />} label="Admin" />
                         <FormControlLabel
-                            disabled={position === 'Root'}
-                            value="Root"
-                            control={<Radio />}
-                            label="Root"
-                        />
-                        <FormControlLabel
-                            disabled={position === 'Root'}
-                            value="Admin"
-                            control={<Radio />}
-                            label="Admin"
-                        />
-                        <FormControlLabel
-                            disabled={position === 'Root'}
+                            disabled={role === 'Root'}
                             value="Doctor"
                             control={<Radio />}
                             label="Doctor"

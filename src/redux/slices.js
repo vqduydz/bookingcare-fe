@@ -5,6 +5,7 @@ import * as API from '_/services/api/dataApi';
 export const getUser = createAsyncThunk('getUser', async (params) => {
     try {
         const res = await API.userApi(params);
+        console.log(res);
         return res;
     } catch (error) {
         return error.response.data;
@@ -13,17 +14,17 @@ export const getUser = createAsyncThunk('getUser', async (params) => {
 
 export const createNewUser = createAsyncThunk('createNewUser', async (dataUser) => {
     try {
-        const res = await API.createNewUser(dataUser);
+        const res = await API.createNewUserApi(dataUser);
         console.log({ res });
         return res;
     } catch (error) {
         console.log({ error });
-        return error.response.data;
+        return error;
     }
 });
 export const updateUser = createAsyncThunk('updateUser', async (updateData) => {
     try {
-        const res = await API.updateUser(updateData);
+        const res = await API.updateUserApi(updateData);
         return res;
     } catch (error) {
         return error.response.data;
@@ -31,7 +32,7 @@ export const updateUser = createAsyncThunk('updateUser', async (updateData) => {
 });
 export const deleteUser = createAsyncThunk('deleteUser', async (id) => {
     try {
-        const res = await API.deleteUser(id);
+        const res = await API.deleteUserApi(id);
         return res;
     } catch (error) {
         return error.response.data;
@@ -63,47 +64,68 @@ export const usersSlice = createSlice({
 const { reducer: usersReducer } = usersSlice;
 export { usersReducer };
 
-// login
+// auth
 
-export const login = createAsyncThunk('user/login', async (param, { rejectWithValue }) => {
+export const getToken = createAsyncThunk('user/getToken', async (params, thunkAPI) => {
     try {
-        const res = await (await API.login(param)).data;
-        return res.data;
+        const response = await API.getTokenLoginApi(params);
+        const { token } = response;
+        console.log(response);
+        return token;
     } catch (error) {
-        return error.response.data;
+        // Xử lý lỗi
+        console.log(error);
+        return thunkAPI.rejectWithValue(error);
     }
 });
-export const userSlice = createSlice({
-    name: 'user',
-    initialState: { currentUser: {} },
-    reducers: { logout: () => ({}) },
+
+const authSlice = createSlice({
+    name: 'auth',
+    initialState: {
+        token: null,
+        isAuthenticated: false,
+        error: null,
+    },
+    reducers: {
+        login(state, action) {
+            console.log(action);
+            state.token = action.payload;
+            state.isAuthenticated = true;
+            state.error = null;
+        },
+        logout(state) {
+            state.token = null;
+            state.isAuthenticated = false;
+            state.error = null;
+        },
+        loginError(state, action) {
+            state.error = action.payload.errorMessage;
+        },
+    },
     extraReducers: (builder) => {
-        builder.addCase(login.pending, (state) => {});
-        builder.addCase(login.fulfilled, (state, action) => {
-            state.currentUser = action.payload;
-            state.isLogged = true;
+        builder.addCase(getToken.fulfilled, (state, action) => {
+            state.token = action.payload;
+            state.isAuthenticated = true;
+            state.error = null;
         });
-        builder.addCase(login.rejected, (state, action) => {
-            state.errorMessage = action.payload;
-            state.isLogged = false;
+        builder.addCase(getToken.rejected, (state, action) => {
+            console.log(action);
+            state.token = null;
+            state.isAuthenticated = false;
+            state.error = action.payload.errorMessage;
         });
     },
 });
-export const { logout } = userSlice.actions;
-const { reducer: authReducer } = userSlice;
+
+export const { login, logout } = authSlice.actions;
+const { reducer: authReducer } = authSlice;
 export { authReducer };
 
 // Languages
 
-let languageInit = () => {
-    if (JSON.parse(localStorage.getItem('persist:root'))) {
-        return JSON.parse(localStorage.getItem('persist:root')).language;
-    } else return 'vi';
-};
-
 export const languageSlice = createSlice({
     name: 'language',
-    initialState: { language: languageInit() },
+    initialState: { language: 'vi' },
     reducers: {
         changeLanguage: (state, action) => {
             state.language = action.payload;

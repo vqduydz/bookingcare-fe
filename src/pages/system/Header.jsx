@@ -1,19 +1,24 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
+import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
 import { MyButton } from '_/components';
 import { logout } from '_/redux/slices';
+import { persistor } from '_/redux/store';
 import { routes } from '_/routes';
 import { activeAddClass } from '_/utills/activeAddClass';
 
 export default function Header(props) {
+    const { enqueueSnackbar } = useSnackbar();
     const dispatch = useDispatch();
     const { currentUser, sideNav, setSideNav } = props;
-    const { email, position, firstName } = currentUser;
+    const { email, role, firstName } = currentUser;
     console.log({ currentUser });
 
     const handleLogout = () => {
         dispatch(logout());
+        persistor.purge();
+        enqueueSnackbar('Goodbye , see you again', { variant: 'info' });
     };
 
     activeAddClass('header-btn');
@@ -91,7 +96,7 @@ export default function Header(props) {
                                             <b>{email}</b>
                                         </Typography>
                                         <Typography sx={{ fontStyle: 'italic' }} variant="h4">
-                                            <b>{position}</b>
+                                            <b>{role}</b>
                                         </Typography>
                                         <MyButton
                                             effect
@@ -178,7 +183,7 @@ export default function Header(props) {
                                     Welcome : <b>{firstName}</b>
                                 </Typography>
                                 <Typography sx={{ display: 'inline-flex', fontStyle: 'italic' }} variant="h4">
-                                    Position : <b>{position}</b>
+                                    Role : <b>{role}</b>
                                 </Typography>
 
                                 <MyButton

@@ -1,9 +1,9 @@
-import { authReducer, languageReducer, usersReducer } from './slices';
-
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
+import { encryptTransform } from 'redux-persist-transform-encrypt';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import storage from 'redux-persist/lib/storage';
+import { authReducer, languageReducer, usersReducer } from './slices';
 
 const persistCommonConfig = {
     storage: storage,
@@ -13,8 +13,15 @@ const persistCommonConfig = {
 const persistConfig = {
     ...persistCommonConfig,
     key: 'root',
-    storage: storage,
     whitelist: ['auth', 'language'],
+    transforms: [
+        encryptTransform({
+            secretKey: 'my-super-secret-key',
+            onError: function (error) {
+                // Handle the error.
+            },
+        }),
+    ],
 };
 
 const Reducers = combineReducers({
@@ -35,4 +42,4 @@ export const store = configureStore({
         }),
 });
 
-persistStore(store);
+export const persistor = persistStore(store);

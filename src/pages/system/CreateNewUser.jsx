@@ -17,7 +17,7 @@ export default function CreateNewUser({ setAddUser }) {
     const dispatch = useDispatch();
     const { setLoading } = useThemMui();
     const [notif, setNotif] = useState();
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         setNotif();
         event.preventDefault();
         setLoading(true);
@@ -28,10 +28,10 @@ export default function CreateNewUser({ setAddUser }) {
             email: data.get('email'),
             password: data.get('password'),
             confirmpassword: data.get('confirmpassword'),
-            phonenumber: data.get('phonenumber'),
+            phoneNumber: data.get('phoneNumber'),
             address: data.get('address'),
             gender: data.get('gender'),
-            position: data.get('position'),
+            role: data.get('role'),
         };
 
         if (dataUser.password !== dataUser.confirmpassword) {
@@ -46,10 +46,10 @@ export default function CreateNewUser({ setAddUser }) {
                     console.log({ result });
                     let message, variant;
                     if (result.error) {
-                        message = result.error.message;
+                        message = result.error;
                         variant = 'error';
                     } else {
-                        message = result.data.message;
+                        message = result.message;
                         variant = 'success';
                         setAddUser();
                     }
@@ -165,10 +165,10 @@ export default function CreateNewUser({ setAddUser }) {
                         size="small"
                         label="Enter Phone Number"
                         fullWidth
-                        name="phonenumber"
+                        name="phoneNumber"
                         type="number"
-                        id="phonenumber"
-                        autoComplete="phonenumber"
+                        id="phoneNumber"
+                        autoComplete="phoneNumber"
                     />
                     <MyTextField
                         sx={{ marginTop: '15px' }}
@@ -186,8 +186,8 @@ export default function CreateNewUser({ setAddUser }) {
                         <FormControlLabel value="Male" control={<Radio />} label="Male" />
                         <FormControlLabel value="Other" control={<Radio />} label="Other" />
                     </RadioGroup>
-                    <FormLabel id="position">Position</FormLabel>
-                    <RadioGroup defaultValue="Doctor" row aria-labelledby="position" name="position">
+                    <FormLabel id="role">Role</FormLabel>
+                    <RadioGroup defaultValue="Doctor" row aria-labelledby="role" name="role">
                         <FormControlLabel disabled value="Root" control={<Radio />} label="Root" />
                         <FormControlLabel value="Admin" control={<Radio />} label="Admin" />
                         <FormControlLabel value="Doctor" control={<Radio />} label="Doctor" />
