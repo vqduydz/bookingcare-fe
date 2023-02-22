@@ -1,36 +1,64 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
-import { encryptTransform } from 'redux-persist-transform-encrypt';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import storage from 'redux-persist/lib/storage';
 import { authReducer, languageReducer, usersReducer } from './slices';
+import CryptoJS from 'crypto-js';
+import createTransform from 'redux-persist/es/createTransform';
 
-const persistCommonConfig = {
-    storage: storage,
-    stateReconciler: autoMergeLevel2,
+const encryptAuthToken = (token) => {
+    if (!token || typeof token !== 'string') {
+        return token;
+    }
+    const encryptedAuthToken = CryptoJS.AES.encrypt(token, process.env.REACT_APP_SECRET_KEY).toString();
+
+    return encryptedAuthToken;
+};
+
+const decryptAuthToken = (encryptedAuthToken) => {
+    if (!encryptedAuthToken || typeof encryptedAuthToken !== 'string') {
+        return encryptedAuthToken;
+    }
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedAuthToken, process.env.REACT_APP_SECRET_KEY);
+    const decryptedAuthToken = decryptedBytes.toString(CryptoJS.enc.Utf8);
+
+    return decryptedAuthToken;
 };
 
 const persistConfig = {
-    ...persistCommonConfig,
     key: 'root',
+    storage: storage,
+    stateReconciler: autoMergeLevel2,
     whitelist: ['auth', 'language'],
     transforms: [
-        encryptTransform({
-            secretKey: 'my-super-secret-key',
-            onError: function (error) {
-                // Handle the error.
+        createTransform(
+            (inboundState, key) => {
+                if (key === 'auth' && inboundState) {
+                    const { token, ...rest } = inboundState;
+                    const encryptedAuthToken = encryptAuthToken(token);
+                    return { token: encryptedAuthToken, ...rest };
+                }
+                return inboundState;
             },
-        }),
+            (outboundState, key) => {
+                if (key === 'auth' && outboundState) {
+                    const { token, ...rest } = outboundState;
+                    const decryptedAuthToken = decryptAuthToken(token);
+                    return { token: decryptedAuthToken, ...rest };
+                }
+                return outboundState;
+            },
+        ),
     ],
 };
 
-const Reducers = combineReducers({
+const reducers = combineReducers({
     auth: authReducer,
     users: usersReducer,
     language: languageReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, Reducers);
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
     reducer: persistedReducer,

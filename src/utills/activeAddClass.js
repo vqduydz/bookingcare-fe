@@ -5,7 +5,10 @@ export const activeAddClass = (className = '') => {
             buttons.forEach((btn) => {
                 btn.classList.remove('active');
             });
-            this.classList.add('active');
+            let hasClassLogo = this.classList.contains('logo');
+            if (hasClassLogo) {
+                this.classList.remove('active');
+            } else this.classList.add('active');
             localStorage.setItem(className, this.innerText);
         });
     });
@@ -14,7 +17,7 @@ export const activeAddClass = (className = '') => {
 
     if (item) {
         buttons.forEach((button) => {
-            if (button.innerText === item) {
+            if (button.innerText === item && !button.classList.contains('logo')) {
                 button.classList.add('active');
             } else {
                 button.classList.remove('active');

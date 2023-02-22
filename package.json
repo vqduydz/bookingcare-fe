@@ -13,6 +13,7 @@
         "@testing-library/user-event": "^13.5.0",
         "axios": "^1.2.6",
         "classnames": "^2.3.2",
+        "crypto-js": "^4.1.1",
         "glyphicons-halflings": "^1.9.1",
         "jwt-decode": "^3.1.2",
         "normalize.css": "^8.0.1",
@@ -26,6 +27,7 @@
         "redux-persist": "^6.0.0",
         "redux-persist-transform-encrypt": "^4.0.0",
         "slick-carousel": "^1.8.1",
+        "socket.io-client": "^4.6.1",
         "styled-components": "^5.3.6",
         "web-vitals": "^2.1.4"
     },

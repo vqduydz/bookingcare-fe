@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider, useTheme } from '@mui/material';
 import { grey, lightBlue } from '@mui/material/colors';
 import { createContext, useContext, useEffect, useState } from 'react';
+import { purple } from '@mui/material/colors';
 
 const ThemeMuiContext = createContext({
     showSidebar: null,
@@ -17,17 +18,17 @@ export const useThemMui = () => useContext(ThemeMuiContext);
 function ThemeMuiContextProvider({ children }) {
     const them = useTheme();
     localStorage.getItem('testObject');
-    const [mode, setMode] = useState(JSON.parse(localStorage.getItem('mode')) || 'light');
+    // const [mode, setMode] = useState(JSON.parse(localStorage.getItem('mode')) || 'light');
     const [showSidebar, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        localStorage.setItem('mode', JSON.stringify(mode));
-    }, [mode]);
+    // useEffect(() => {
+    //     localStorage.setItem('mode', JSON.stringify(mode));
+    // }, [mode]);
 
-    const switchMode = () => {
-        setMode(mode === 'light' ? 'dark' : 'light');
-    };
+    // const switchMode = () => {
+    //     setMode(mode === 'light' ? 'dark' : 'light');
+    // };
     const switchSidebar = () => {
         setShow(!showSidebar);
     };
@@ -85,34 +86,35 @@ function ThemeMuiContextProvider({ children }) {
         },
         spacing: 2,
         palette: {
-            mode,
+            // mode,
 
-            ...(mode === 'light'
-                ? {
-                      // palette values for light mode
-                      primary: {
-                          main: '#fff ',
-                      },
-                      divider: lightBlue[700],
-                      background: {
-                          default: '#fff',
-                          paper: '#fff',
-                      },
-                      text: {
-                          primary: '#333',
-                      },
-                  }
-                : {
-                      primary: '#121212 ',
-                      divider: grey[700],
-                      background: {
-                          default: '#121212 ',
-                          paper: '#121212 ',
-                      },
-                      text: {
-                          primary: '#fff',
-                      },
-                  }),
+            // ...(mode === 'light'
+            //     ? {
+
+            // palette values for light mode
+            primary: {
+                main: '#ffffff',
+            },
+            divider: lightBlue[700],
+            background: {
+                default: '#ffffff',
+                paper: '#ffffff',
+            },
+            text: {
+                primary: '#333',
+            },
+            //   }
+            // : {
+            //       primary: '#121212 ',
+            //       divider: grey[700],
+            //       background: {
+            //           default: '#121212 ',
+            //           paper: '#121212 ',
+            //       },
+            //       text: {
+            //           primary: '#ffffff',
+            //       },
+            //   }),
         },
         typography: {
             htmlFontSize: 16,
@@ -213,7 +215,16 @@ function ThemeMuiContextProvider({ children }) {
 
     const backgroundColor = them.palette.background.default;
     const color = them.palette.text.primary;
-    const value = { theme, backgroundColor, color, switchMode, loading, setLoading, showSidebar, switchSidebar };
+    const value = {
+        theme,
+        backgroundColor,
+        color,
+        // switchMode,
+        loading,
+        setLoading,
+        showSidebar,
+        switchSidebar,
+    };
 
     return (
         <ThemeMuiContext.Provider value={value}>

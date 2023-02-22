@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { axiosService } from './axiosClient';
 
 export const userApi = (id) => {
@@ -10,9 +11,14 @@ export const userApi = (id) => {
     }
 };
 
-export const getTokenLoginApi = (param) => {
+export const getTokenApi = (param) => {
+    const url = `${process.env.REACT_APP_BACKEND_URL}/login`;
+    return axios.post(url, param);
+};
+
+export const loginApi = () => {
     const url = '/login';
-    return axiosService.post(url, param);
+    return axiosService.get(url);
 };
 
 export const forgotPasswordApi = (param) => {
@@ -25,15 +31,6 @@ export const resetPasswordApi = (token, password) => {
     return axiosService.patch(url, password);
 };
 
-export const loginApi = (token) => {
-    const url = '/login';
-    return axiosService.get(url, {
-        headers: {
-            Authorization: 'Bearer ' + token,
-        },
-    });
-};
-
 export const createNewUserApi = (dataUser) => {
     const url = `/user`;
     return axiosService.post(url, dataUser);
@@ -44,10 +41,6 @@ export const updateUserApi = (dataUpdate) => {
     return axiosService.patch(url, dataUpdate);
 };
 
-// export const deleteUser = (id) => {
-//     const url = `/user-delete?id=${id}`;
-//     return axiosService.get(url);
-// };
 export const deleteUserApi = (id) => {
     const url = `/user`;
     return axiosService.delete(url, { data: { id } });

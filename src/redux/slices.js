@@ -1,41 +1,39 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 import * as API from '_/services/api/dataApi';
 
 // get user
-export const getUser = createAsyncThunk('getUser', async (params) => {
+export const getUser = createAsyncThunk('getUser', async (params, thunkAPI) => {
     try {
         const res = await API.userApi(params);
-        console.log(res);
         return res;
     } catch (error) {
-        return error.response.data;
+        return thunkAPI.rejectWithValue(error);
     }
 });
 
-export const createNewUser = createAsyncThunk('createNewUser', async (dataUser) => {
+export const createNewUser = createAsyncThunk('createNewUser', async (dataUser, thunkAPI) => {
     try {
         const res = await API.createNewUserApi(dataUser);
-        console.log({ res });
         return res;
     } catch (error) {
-        console.log({ error });
-        return error;
+        return thunkAPI.rejectWithValue(error);
     }
 });
-export const updateUser = createAsyncThunk('updateUser', async (updateData) => {
+export const updateUser = createAsyncThunk('updateUser', async (updateData, thunkAPI) => {
     try {
         const res = await API.updateUserApi(updateData);
         return res;
     } catch (error) {
-        return error.response.data;
+        return thunkAPI.rejectWithValue(error);
     }
 });
-export const deleteUser = createAsyncThunk('deleteUser', async (id) => {
+export const deleteUser = createAsyncThunk('deleteUser', async (id, thunkAPI) => {
     try {
         const res = await API.deleteUserApi(id);
         return res;
     } catch (error) {
-        return error.response.data;
+        return thunkAPI.rejectWithValue(error);
     }
 });
 
@@ -66,58 +64,57 @@ export { usersReducer };
 
 // auth
 
-export const getToken = createAsyncThunk('user/getToken', async (params, thunkAPI) => {
+export const login = createAsyncThunk('user/login', async (params, thunkAPI) => {
     try {
-        const response = await API.getTokenLoginApi(params);
-        const { token } = response;
-        console.log(response);
-        return token;
+        const url = `${process.env.REACT_APP_BACKEND_URL}/login`;
+        const response = await axios.post(url, params);
+        const res = response.data;
+        return res;
     } catch (error) {
         // Xử lý lỗi
-        console.log(error);
-        return thunkAPI.rejectWithValue(error);
+        return thunkAPI.rejectWithValue(error.response.data);
     }
 });
+
+// export const login = createAsyncThunk('user/login', async (thunkAPI) => {
+//     try {
+//         const response = await API.loginApi();
+//         //         return response;
+//     } catch (error) {
+//         // Xử lý lỗi
+//         //         return thunkAPI.rejectWithValue(error);
+//     }
+// });
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
         token: null,
-        isAuthenticated: false,
         error: null,
     },
     reducers: {
-        login(state, action) {
-            console.log(action);
-            state.token = action.payload;
-            state.isAuthenticated = true;
-            state.error = null;
-        },
         logout(state) {
             state.token = null;
-            state.isAuthenticated = false;
             state.error = null;
         },
         loginError(state, action) {
-            state.error = action.payload.errorMessage;
+            state.token = null;
+            state.error = action.payload;
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(getToken.fulfilled, (state, action) => {
-            state.token = action.payload;
-            state.isAuthenticated = true;
+        builder.addCase(login.fulfilled, (state, action) => {
+            state.token = action.payload.token;
             state.error = null;
         });
-        builder.addCase(getToken.rejected, (state, action) => {
-            console.log(action);
+        builder.addCase(login.rejected, (state, action) => {
             state.token = null;
-            state.isAuthenticated = false;
-            state.error = action.payload.errorMessage;
+            state.error = action.payload.error;
         });
     },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { logout } = authSlice.actions;
 const { reducer: authReducer } = authSlice;
 export { authReducer };
 

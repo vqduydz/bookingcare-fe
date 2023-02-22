@@ -7,17 +7,25 @@ import Menu from '@mui/material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import classNames from 'classnames/bind';
+import { useSnackbar } from 'notistack';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import icon from '_/assets/icon';
 import images from '_/assets/image';
-import { Button } from '_/components';
+import { Button, MyButton } from '_/components/common';
+import { styleBtn } from '_/components/pages/system/styleBtn';
 import { useAuth } from '_/context/AuthContext';
+import { logout } from '_/redux/slices';
+import { persistor } from '_/redux/store';
+import { routes } from '_/routes';
 import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-    const { handleChangeLanguage, language } = useAuth();
+    const { enqueueSnackbar } = useSnackbar();
+    const dispatch = useDispatch();
+    const { handleChangeLanguage, language, currentUser } = useAuth();
     const [anchorElNav, setAnchorElNav] = useState();
     const [anchorElUser, setAnchorElUser] = useState();
     const handleOpenNavMenu = (event) => {
@@ -35,6 +43,11 @@ function Header() {
         setAnchorElUser(null);
     };
 
+    const handleLogout = () => {
+        dispatch(logout());
+        persistor.purge();
+        enqueueSnackbar('Goodbye , see you again', { variant: 'info' });
+    };
     return (
         <AppBar
             position="sticky"
@@ -46,7 +59,12 @@ function Header() {
                 boxShadow: '0px 1px 1px rgb(0 0 0 / 18%)',
             }}
         >
-            <Container sx={{ width: { 768: 750, 992: 970, 1200: 1174 }, padding: '0 15px' }}>
+            <Container
+                sx={{
+                    width: { 768: 750, 992: 970, 1200: 1174 },
+                    padding: '0 15px',
+                }}
+            >
                 <Toolbar disableGutters sx={{ width: '100%' }}>
                     <Box sx={{ display: { 0: 'flex', 768: 'none' } }}>
                         <Button onClick={handleOpenNavMenu} className={cx('padding-0-6')}>
@@ -144,6 +162,7 @@ function Header() {
                     </Box>
                     <Box
                         sx={{
+                            ...styleBtn,
                             flexGrow: 0,
                         }}
                     >
@@ -156,6 +175,29 @@ function Header() {
                             </Typography>
                         </Button>
                     </Box>
+                    {currentUser ? (
+                        <MyButton
+                            effect
+                            fontSize={1.3}
+                            padding="5px 15px"
+                            color={{ mainColor: 'red' }}
+                            onClick={handleLogout}
+                            type="button"
+                        >
+                            Log out
+                        </MyButton>
+                    ) : (
+                        <MyButton
+                            effect
+                            fontSize={1.3}
+                            padding="5px 15px"
+                            color={{ mainColor: 'green' }}
+                            to={routes.login}
+                            type="button"
+                        >
+                            Log in
+                        </MyButton>
+                    )}
                 </Toolbar>
             </Container>
         </AppBar>

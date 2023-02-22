@@ -3,10 +3,10 @@ import PlaceIcon from '@mui/icons-material/Place';
 import { Box } from '@mui/material';
 import classNames from 'classnames/bind';
 import icon from '_/assets/icon';
-import { Button } from '_/components';
-import { Inner } from '_/components/CustomComponents/CustomMui';
 import styles from './Footer.module.scss';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
+import { Inner } from '_/components/common/CustomComponents/CustomMui';
+import { Button } from '_/components/common';
 
 const cx = classNames.bind(styles);
 

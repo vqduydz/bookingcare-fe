@@ -24,7 +24,7 @@
     padding: 0;
     box-sizing: border-box;
     overflow-wrap: break-word;
-    word-break: break-word;
+    // word-break: break-word;
     white-space: normal;
 }
 // scrollbar
@@ -79,7 +79,11 @@ input,
 
 a[href] {
     text-decoration: none;
-    color: var(--mau-bc-16);
+    // color: var(--mau-bc-16);
+    color: #3300ff;
+    // &:hover {
+    //     color: red;
+    // }
 }
 
 //customSlickCss

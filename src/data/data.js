@@ -604,3 +604,486 @@ export const rows = [
         '52458718774',
     ),
 ];
+export const listDrop = [
+    {
+        'Chuyên khoa': [
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/xet-nghiem-y-hoc/chuyen-khoa/tong-quat',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/12/05/112832-xn-tong-quat.png',
+                title: 'Tổng quát',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/xet-nghiem-y-hoc/chuyen-khoa/tai-nha',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/12/05/112830-xn-tai-nha.png',
+                title: 'Tại nhà',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/xet-nghiem-y-hoc/chuyen-khoa/ung-thu',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/12/05/134243-ungthu1.png',
+                title: 'Ung thư',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/xet-nghiem-y-hoc/chuyen-khoa/cum-va-sot',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/12/05/112831-sot.png',
+                title: 'Cúm và Sốt',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/xet-nghiem-y-hoc/chuyen-khoa/di-ung',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/12/05/112831-di-ung.png',
+                title: 'Dị ứng',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/xet-nghiem-y-hoc/chuyen-khoa/gan',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/12/05/112835-gan4.png',
+                title: 'Gan',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/xet-nghiem-y-hoc/chuyen-khoa/thai-ky',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/12/05/112830-thai-ky.png',
+                title: 'Thai kỳ',
+            },
+            {
+                link: 'https://bookingcare.vn/co-xuong-khop-s1',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/13/120331-co-xuong-khop.jpg',
+                title: 'Cơ Xương Khớp',
+            },
+            {
+                link: 'https://bookingcare.vn/than-kinh-s18',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/13/121042-than-kinh.jpg',
+                title: 'Thần kinh',
+            },
+            {
+                link: 'https://bookingcare.vn/tieu-hoa-s22',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/13/120933-tieu-hoa.jpg',
+                title: 'Tiêu hoá',
+            },
+            {
+                link: 'https://bookingcare.vn/tim-mach-s3',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/13/120741-tim-mach.jpg',
+                title: 'Tim mạch',
+            },
+            {
+                link: 'https://bookingcare.vn/tai-mui-hong-s4',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/13/121146-tai-mui-hong.jpg',
+                title: 'Tai Mũi Họng',
+            },
+            {
+                link: 'https://bookingcare.vn/cot-song-s24',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/13/121215-cot-song.jpg',
+                title: 'Cột sống',
+            },
+            {
+                link: 'https://bookingcare.vn/y-hoc-co-truyen-s39',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/13/121232-y-hoc-co-truyen.jpg',
+                title: 'Y học Cổ truyền',
+            },
+            {
+                link: 'https://bookingcare.vn/cham-cuu-s40',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/13/121305-cham-cuu.jpg',
+                title: 'Châm cứu',
+            },
+            {
+                link: 'https://bookingcare.vn/san-phu-khoa-s19',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/181822-san-phu-khoa.jpg',
+                title: 'Sản Phụ khoa',
+            },
+            {
+                link: 'https://bookingcare.vn/sieu-am-thai-s10',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/181619-sieu-am-thai.jpg',
+                title: 'Siêu âm thai',
+            },
+            {
+                link: 'https://bookingcare.vn/nhi-khoa-s5',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/175620-nhi-khoa.jpg',
+                title: 'Nhi khoa',
+            },
+            {
+                link: 'https://bookingcare.vn/da-lieu-s11',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/175809-da-lieu.jpg',
+                title: 'Da liễu',
+            },
+            {
+                link: 'https://bookingcare.vn/benh-viem-gan-s28',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/182233-viem-gan.jpg',
+                title: 'Bệnh Viêm gan',
+            },
+            {
+                link: 'https://bookingcare.vn/suc-khoe-tam-than-s27',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/182940-roi-loan-giac-ngu.jpg',
+                title: 'Sức khỏe tâm thần',
+            },
+            {
+                link: 'https://bookingcare.vn/di-ung-mien-dich-s36',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/183706-di-ung-mien-dich.jpg',
+                title: 'Dị ứng miễn dịch',
+            },
+            {
+                link: 'https://bookingcare.vn/ho-hap-phoi-s43',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2020/09/30/141059-ung-thu-phoi.jpg',
+                title: 'Hô hấp - Phổi',
+            },
+            {
+                link: 'https://bookingcare.vn/ngoai-than-kinh-s71',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/05/27/172508-145b3e2c46f7bddcf859384a0b3c1435.jpg',
+                title: 'Ngoại thần kinh',
+            },
+            {
+                link: 'https://bookingcare.vn/nam-hoc-s26',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/184456-nam-hoc.jpg',
+                title: 'Nam học',
+            },
+            {
+                link: 'https://bookingcare.vn/chuyen-khoa-mat-s29',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/190150-chuyen-khoa-mat.jpg',
+                title: 'Chuyên khoa Mắt',
+            },
+            {
+                link: 'https://bookingcare.vn/than-tiet-nieu-s32',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/190750-than-tiet-nieu.jpg',
+                title: 'Thận - Tiết niệu',
+            },
+            {
+                link: 'https://bookingcare.vn/noi-khoa-s17',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/192154-noi-khoa.jpg',
+                title: 'Nội khoa',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/192415-kham-tong-quat.jpg',
+                title: 'Khám tổng quát',
+            },
+            {
+                link: 'https://bookingcare.vnhttps://nhakhoa.bookingcare.vn/nha-khoa-s33',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/182050-nha-khoa.jpg',
+                title: 'Nha khoa',
+            },
+            {
+                link: 'https://bookingcare.vn/tieu-duong-noi-tiet-s21',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/192804-tieu-duong-noi-tiet.jpg',
+                title: 'Tiểu đường - Nội tiết',
+            },
+            {
+                link: 'https://bookingcare.vn/phuc-hoi-chuc-nang-s30',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/193325-phuc-hoi-chuc-nang.jpg',
+                title: 'Phục hồi chức năng',
+            },
+            {
+                link: 'https://bookingcare.vn/chup-cong-huong-tu-s7',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/193531-chup-mri.jpg',
+                title: 'Chụp Cộng hưởng từ',
+            },
+            {
+                link: 'https://bookingcare.vn/chup-cat-lop-vi-tinh-s8',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/194032-chup-ct-scanner.jpg',
+                title: 'Chụp cắt lớp vi tính',
+            },
+            {
+                link: 'https://bookingcare.vn/noi-soi-tieu-hoa-s9',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/194326-noi-soi-tieu-hoa.jpg',
+                title: 'Nội soi Tiêu hóa',
+            },
+            {
+                link: 'https://bookingcare.vn/chup-petct-s20',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/195743-chup-pet-ct.jpg',
+                title: 'Chụp PET/CT',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/co-ban',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/26/095749-khamtongquat.png',
+                title: 'Cơ bản',
+            },
+            {
+                link: 'https://bookingcare.vn/tu-van-tri-lieu-tam-ly-tu-xa-s65',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2020/12/20/111237-tam-ly-2.jpg',
+                title: 'Tư vấn, trị liệu Tâm lý từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/nang-cao',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/26/095803-nangcao.png',
+                title: 'Nâng cao',
+            },
+            {
+                link: 'https://bookingcare.vn/ung-buou-s15',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/195611-ung-buou.jpg',
+                title: 'Ung bướu',
+            },
+            {
+                link: 'https://bookingcare.vn/suc-khoe-tam-than-tu-xa-s45',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2020/12/09/100650-doctor-57101521920.jpg',
+                title: 'Sức khỏe tâm thần từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/da-lieu-tham-my-s72',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/05/27/174107-da-lieu.jpg',
+                title: 'Da liễu thẩm mỹ',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-da-lieu-tu-xa-s44',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/11/04/163921da-lieu-hn.jpg',
+                title: 'Bác sĩ Da liễu từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/xet-nghiem-y-hoc/chuyen-khoa/covid',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/12/05/112832-covid.png',
+                title: 'Covid',
+            },
+            {
+                link: 'https://bookingcare.vn/truyen-nhiem-s74',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/05/30/142409-3889458ce0da663ab6532d16e0518e4f.jpg',
+                title: 'Truyền nhiễm',
+            },
+            {
+                link: 'https://bookingcare.vn/phau-thuat-nam-hoc-s99',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2023/02/02/144537-2.png',
+                title: 'Phẫu thuật Nam học',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-gia-dinh-s41',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/195926-bac-si-gia-dinh.jpg',
+                title: 'Bác sĩ gia đình',
+            },
+            {
+                link: 'https://bookingcare.vn/tao-hinh-ham-mat-s42',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/16/200111-tao-hinh-ham-mat.jpg',
+                title: 'Tạo hình Hàm Mặt',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-co-xuong-khop-tu-xa-s46',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/02/27/165326kham-benh-co-xuong-khop-1.jpg',
+                title: 'Bác sĩ Cơ-Xương-Khớp từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-tieu-hoa-tu-xa-s48',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2018/01/17/171636bac-si-tieu-hoa.jpg',
+                title: 'Bác sĩ Tiêu hóa từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-noi-khoa-tu-xa-s49',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/12/13/120741-tim-mach.jpg',
+                title: 'Bác sĩ Nội khoa từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-nam-hoc-tu-xa-s50',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2018/10/16/151254nam-hoc.jpg',
+                title: 'Bác sĩ Nam học từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-san-phu-khoa-tu-xa-s51',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2020/07/17/085420-dia-chi-kham-san-phu-khoa-ha-noi.jpg',
+                title: 'Bác sĩ Sản phụ khoa từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-tim-mach-tu-xa-s52',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/05/31/170831kham-tim-mach-4.jpg',
+                title: 'Bác sĩ Tim mạch từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-nhi-tu-xa-s53',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2017/12/19/173328kham-nhi-khoa.jpg',
+                title: 'Bác sĩ Nhi từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-tai-mui-hong-tu-xa-s54',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2018/08/18/095722tai-mui-hong.jpg',
+                title: 'Bác sĩ Tai-Mũi-Họng từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-noi-tiet-tu-xa-s55',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2018/08/09/184703noi-tiet.jpg',
+                title: 'Bác sĩ Nội tiết từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-than-kinh-tu-xa-s56',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/10/03/100739bac-si-than-kinh.jpg',
+                title: 'Bác sĩ Thần kinh từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-than-tiet-nieu-tu-xa-s58',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2019/04/12/120303than-tiet-nieu-2.jpg',
+                title: 'Bác sĩ Thận - Tiết niệu từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-ho-hap-phoi-tu-xa-s61',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2021/06/14/164304-benh-phoi-tac-nghen-man-tinh-copd.jpg',
+                title: 'Bác sĩ Hô hấp - Phổi từ xa',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/xet-nghiem-y-hoc/chuyen-khoa/gen',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/12/05/112831-dna.png',
+                title: 'Gen',
+            },
+            {
+                link: 'https://bookingcare.vn/tu-van-tri-lieu-tam-ly-s66',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2020/12/09/152607-tu-va.jpg',
+                title: 'Tư vấn, trị liệu Tâm lý',
+            },
+            {
+                link: 'https://bookingcare.vn/vo-sinh-hiem-muon-s67',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2021/04/20/150017-vo-sinh-hiem-muon1.jpg',
+                title: 'Vô sinh - Hiếm muộn',
+            },
+            {
+                link: 'https://bookingcare.vn/bac-si-tu-van-f0-s68',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2020/04/07/113315-videocare2.jpg',
+                title: 'Bác sĩ tư vấn F0',
+            },
+            {
+                link: 'https://bookingcare.vn/hau-covid-19-s70',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/03/01/154044-adult-44028081920.jpg',
+                title: 'Hậu Covid 19',
+            },
+            {
+                link: 'https://bookingcare.vn/chan-thuong-chinh-hinh-s73',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/05/30/091404-chan-thuong.jpg',
+                title: 'Chấn thương chỉnh hình',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/nam',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/26/095756-nam.png',
+                title: 'Nam',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/nu',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/26/095828-nu.png',
+                title: 'Nữ',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/tre-em',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/26/095850-trem.png',
+                title: 'Trẻ em',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/nguoi-gia',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/26/095812-nguoigia.png',
+                title: 'Người già',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/tien-hon-nhan',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/26/095844-tienhonnhan.png',
+                title: 'Tiền hôn nhân',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/tam-soat-ung-thu',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/26/095836-tamsoatungthu.png',
+                title: 'Tầm soát ung thư',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/tam-soat-ung-thu-vu',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/26/095855-ungthuvu.png',
+                title: 'Tầm soát ung thư vú',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/tam-soat-tieu-hoa',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/28/093823-icon1-2.png',
+                title: 'Tầm soát tiêu hóa',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/kham-tong-quat/chuyen-khoa/benh-ly-chung',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/10/28/093824-icon21.png',
+                title: 'Bệnh lý chung',
+            },
+            {
+                link: 'https://bookingcare.vn/dich-vu-y-te/xet-nghiem-y-hoc',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2022/12/02/115000-okok.png',
+                title: 'Xét nghiệm y học',
+            },
+            {
+                link: 'https://bookingcare.vn/phau-thuat-than-tiet-nieu-s98',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2023/02/02/144537-1.png',
+                title: 'Phẫu thuật Thận - Tiết niệu',
+            },
+            {
+                link: 'https://bookingcare.vn/phau-thuat-tai--mui-hong-s100',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2023/02/02/144538-4.png',
+                title: 'Phẫu thuật Tai -Mũi - Họng',
+            },
+            {
+                link: 'https://bookingcare.vn/phau-thuat-hau-mon-truc-trang-s101',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2023/02/02/144538-5.png',
+                title: 'Phẫu thuật Hậu môn - Trực tràng',
+            },
+            {
+                link: 'https://bookingcare.vn/phau-thuat-mat-s102',
+                image: 'https://cdn.bookingcare.vn/fr/w300/2023/02/02/144538-3.png',
+                title: 'Phẫu thuật mắt',
+            },
+        ],
+        'Cơ sở y tế': [
+            {
+                link: 'https://bookingcare.vn/co-so-y-te/benh-vien-huu-nghi-viet-duc-p58',
+                image: 'https://cdn.bookingcare.vn/fr/w500/2020/06/03/114348-bv-viet-duc.jpg',
+                title: 'Bệnh viện Hữu nghị Việt Đức',
+            },
+            {
+                link: 'https://bookingcare.vn/co-so-y-te/benh-vien-cho-ray-p141',
+                image: 'https://cdn.bookingcare.vn/fr/w500/2021/09/14/095119-benh-vien-cho-ray-h1.jpg',
+                title: 'Bệnh viện Chợ Rẫy',
+            },
+            {
+                link: 'https://bookingcare.vn/co-so-y-te/phong-kham-benh-vien-dai-hoc-y-duoc-1-p154',
+                image: 'https://cdn.bookingcare.vn/fr/w500/2020/05/29/112414-pk-dhyd1.jpg',
+                title: 'Phòng khám Bệnh viện Đại học Y Dược 1',
+            },
+            {
+                link: 'https://bookingcare.vn/co-so-y-te/trung-tam-kham-suc-khoe-dinh-ky-benh-vien-trung-uong-quan-doi-108-p75',
+                image: 'https://cdn.bookingcare.vn/fr/w500/2023/01/11/163604-223000085957trung-tam-kham-suc-khoe-dinh-ky-108.jpg',
+                title: 'Trung tâm Khám sức khỏe định kỳ, Bệnh viện Trung ương Quân đội 108',
+            },
+            {
+                link: 'https://bookingcare.vn/co-so-y-te/benh-vien-ung-buou-hung-viet-p137',
+                image: 'https://cdn.bookingcare.vn/fr/w500/2020/06/04/095412-bv-hung-viet.jpg',
+                title: 'Bệnh viện Ung bướu Hưng Việt',
+            },
+        ],
+        'Bác sĩ': [
+            {
+                link: 'https://bookingcare.vn/bac-si-chuyen-khoa-ii-tran-minh-khuyen-d1466.html',
+                image: 'https://cdn.bookingcare.vn/fr/w200/2021/01/18/105401-bsckii-tran-minh-khuyen.jpg',
+                title: 'Bác sĩ Chuyên khoa II Trần Minh Khuyên',
+            },
+
+            {
+                link: 'https://bookingcare.vn/pho-giao-su-tien-si-bac-si-cao-cap-nguyen-duy-hung-d168.html',
+                image: 'https://cdn.bookingcare.vn/fr/w200/2020/03/17/114430-bshung.jpg',
+                title: 'Phó Giáo sư, Tiến sĩ, Bác sĩ cao cấp Nguyễn Duy Hưng',
+            },
+
+            {
+                link: 'https://bookingcare.vn/pho-giao-su-tien-si-bac-si-nguyen-thi-hoai-an-d100.html',
+                image: 'https://cdn.bookingcare.vn/fr/w200/2020/01/03/090559-pgs-nguyen-thi-hoai-an.jpg',
+                title: 'Phó Giáo sư, Tiến sĩ, Bác sĩ Nguyễn Thị Hoài An',
+            },
+
+            {
+                link: 'https://bookingcare.vn/kham-hiem-muon--ho-tro-sinh-san-benh-vien-nam-hoc-va-hiem-muon-ha-noi-d915.html',
+                image: 'https://cdn.bookingcare.vn/fr/w200/2019/11/14/103848anh-dai-dien-bs.jpg',
+                title: 'Khám Hiếm muộn - Hỗ trợ sinh sản, Bệnh viện Nam học và Hiếm muộn Hà Nội',
+            },
+
+            {
+                link: 'https://bookingcare.vn/kham-nam-hoc-benh-vien-nam-hoc-va-hiem-muon-ha-noi-d913.html',
+                image: 'https://cdn.bookingcare.vn/fr/w200/2019/11/14/103848anh-dai-dien-bs.jpg',
+                title: 'Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội',
+            },
+        ],
+        'Lý do khám': [
+            {
+                link: 'https://bookingcare.vn/kham-chua-benh/kham-suc-khoe-tong-quat-tai-phong-kham-benh-vien-dai-hoc-y-duoc-tphcm-r1796.htm',
+                title: 'Khám sức khỏe tổng quát tại Phòng khám Bệnh viện Đại học Y dược TPHCM',
+            },
+            {
+                link: 'https://bookingcare.vn/kham-chua-benh/kham-chua-noi-me-day-r207.htm',
+                title: 'Khám chữa nổi mề đay',
+            },
+            {
+                link: 'https://bookingcare.vn/kham-chua-benh/kham-theo-yeu-cau-benh-vien-huu-nghi-viet-duc-r802.htm',
+                title: 'Khám theo yêu cầu, Bệnh viện Hữu nghị Việt Đức',
+            },
+            { link: 'https://bookingcare.vn/kham-chua-benh/giam-sut-can-r197.htm', title: 'Giảm sút cân' },
+            {
+                link: 'https://bookingcare.vn/kham-chua-benh/kham-chua-chong-mat-r193.htm',
+                title: 'Khám chữa chóng mặt',
+            },
+        ],
+    },
+];
