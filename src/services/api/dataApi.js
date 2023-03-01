@@ -12,7 +12,7 @@ export const userApi = (id) => {
 };
 
 export const getTokenApi = (param) => {
-    const url = `${process.env.REACT_APP_BACKEND_URL}/login`;
+    const url = `${process.env.REACT_APP_API_ENDPOINT}/login`;
     return axios.post(url, param);
 };
 

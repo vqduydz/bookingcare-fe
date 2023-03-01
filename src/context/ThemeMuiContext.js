@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider, useTheme } from '@mui/material';
+import { createTheme, responsiveFontSizes, ThemeProvider, useTheme } from '@mui/material';
 import { grey, lightBlue } from '@mui/material/colors';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { purple } from '@mui/material/colors';
@@ -33,7 +33,9 @@ function ThemeMuiContextProvider({ children }) {
         setShow(!showSidebar);
     };
 
-    const theme = createTheme({
+    const breakpoints = them.breakpoints;
+
+    let theme = createTheme({
         breakpoints: {
             values: {
                 0: 0,
@@ -117,83 +119,59 @@ function ThemeMuiContextProvider({ children }) {
             //   }),
         },
         typography: {
-            htmlFontSize: 16,
+            htmlFontSize: 10,
             fontFamily: '"Montserrat", sans-serif',
             fontSize: 14,
             fontWeightLight: 300,
             fontWeightRegular: 400,
             fontWeightMedium: 500,
             fontWeightBold: 700,
-            h1: {
-                fontFamily: '"Montserrat", sans-serif',
-                fontWeight: 300,
-                fontSize: '6rem',
-                lineHeight: 1.167,
-                letterSpacing: '-0.01562em',
-            },
-            h2: {
-                fontFamily: '"Montserrat", sans-serif',
-                fontWeight: 300,
-                fontSize: '3.75rem',
-                lineHeight: 1.2,
-                letterSpacing: '-0.00833em',
-            },
-            h3: {
+            vanban: {
                 fontFamily: '"Montserrat", sans-serif',
                 fontWeight: 400,
-                fontSize: '3rem',
-                lineHeight: 1.167,
-                letterSpacing: '0em',
-            },
-            h4: {
-                fontFamily: '"Montserrat", sans-serif',
-                fontWeight: 400,
-                fontSize: '2.125rem',
-                lineHeight: 1.235,
-                letterSpacing: '0.00735em',
-            },
-            h5: {
-                fontFamily: '"Montserrat", sans-serif',
-                fontWeight: 400,
-                fontSize: '1.5rem',
-                lineHeight: 1.334,
-                letterSpacing: '0em',
-            },
-            h6: {
-                fontFamily: '"Montserrat", sans-serif',
-                fontWeight: 500,
-                fontSize: '1.25rem',
-                lineHeight: 1.6,
-                letterSpacing: '0.0075em',
-            },
-            subtitle1: {
-                fontFamily: '"Montserrat", sans-serif',
-                fontWeight: 400,
-                fontSize: '1rem',
-                lineHeight: 1.75,
-                letterSpacing: '0.00938em',
-            },
-            subtitle2: {
-                fontFamily: '"Montserrat", sans-serif',
-                fontWeight: 500,
-                fontSize: '0.875rem',
-                lineHeight: 1.57,
-                letterSpacing: '0.00714em',
-            },
-            body1: {
-                fontFamily: '"Montserrat", sans-serif',
-                fontWeight: 400,
-                fontSize: '1.5rem',
+                fontSize: '1.4rem',
                 lineHeight: 1.5,
-                letterSpacing: '0.00938em',
+                [breakpoints.up('769')]: {
+                    fontSize: '1.6rem',
+                },
+                [breakpoints.up('1201')]: {
+                    fontSize: '1.8rem',
+                },
+                [breakpoints.up('1801')]: {
+                    fontSize: '2rem',
+                },
             },
-            button: {
+            tieude: {
                 fontFamily: '"Montserrat", sans-serif',
-                fontWeight: 500,
-                fontSize: '1.3rem',
-                lineHeight: 1.75,
-                letterSpacing: '0.02857em',
-                textTransform: 'uppercase',
+                fontWeight: 'bold',
+                fontSize: '1.8rem',
+                lineHeight: 1.5,
+                [breakpoints.up('769')]: {
+                    fontSize: '2.2rem',
+                },
+                [breakpoints.up('1201')]: {
+                    fontSize: '2.6rem',
+                },
+                [breakpoints.up('1801')]: {
+                    fontSize: '3rem',
+                },
+                letterSpacing: '0.03333em',
+            },
+            phude: {
+                fontFamily: '"Montserrat", sans-serif',
+                fontWeight: 'bold',
+                fontSize: '1.2rem',
+                lineHeight: 1.5,
+                [breakpoints.up('769')]: {
+                    fontSize: '1.4rem',
+                },
+                [breakpoints.up('1201')]: {
+                    fontSize: '1.6rem',
+                },
+                [breakpoints.up('1801')]: {
+                    fontSize: '1.8rem',
+                },
+                letterSpacing: '0.0em',
             },
             caption: {
                 fontFamily: '"Montserrat", sans-serif',
@@ -201,14 +179,6 @@ function ThemeMuiContextProvider({ children }) {
                 fontSize: '0.75rem',
                 lineHeight: 1.66,
                 letterSpacing: '0.03333em',
-            },
-            overline: {
-                fontFamily: '"Montserrat", sans-serif',
-                fontWeight: 400,
-                fontSize: '0.75rem',
-                lineHeight: 2.66,
-                letterSpacing: '0.08333em',
-                textTransform: 'uppercase',
             },
         },
     });

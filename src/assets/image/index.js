@@ -25,6 +25,13 @@ const images = {
     ehealth: require('./cuc-cong-nghe-thong-tin-bo-y-te-2.png'),
     suckhoedoisong: require('./suckhoedoisong.png'),
     app: require('./bookingcare-app-2020.png'),
+    born: require('./born.png'),
+    thtd: require('./thtd.png'),
+    thcs: require('./thcs.png'),
+    thpt: require('./thpt.png'),
+    vns: require('./vns.png'),
+    logo: require('./logo.png'),
+    thatnghiep: require('./thatnghiep.png'),
 };
 
 export default images;

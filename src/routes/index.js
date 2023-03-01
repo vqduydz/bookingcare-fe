@@ -6,10 +6,12 @@ import {
     Manage,
     NotFoundPage,
     OrderManage,
+    Profile,
     Register,
     UserManage,
 } from '_/components/pages';
 import ResetPass from '_/components/pages/auth/ResetPass';
+import Timeline from '_/components/pages/Profile/Timeline';
 import ContentOnlyLayout from '_/layouts/ContentOnlyLayout/ContentOnlyLayout';
 import SystemLayout from '_/layouts/SystemLayout/SystemLayout';
 
@@ -24,6 +26,7 @@ const routes = {
 
     forgotpassword: '/forgotpassword',
     resetPassword: '/reset-password/:token',
+    profile: '/profile',
     notfoundpage: '*',
 };
 
@@ -34,6 +37,8 @@ const PublicRoutes = [
     { path: routes.resetPassword, comp: ResetPass, layout: ContentOnlyLayout },
     { path: routes.forgotpassword, comp: ForgotPassword, layout: ContentOnlyLayout },
     { path: routes.notfoundpage, comp: NotFoundPage },
+    { path: routes.profile, comp: Profile, layout: ContentOnlyLayout },
+    { path: routes.profile, comp: Timeline, layout: ContentOnlyLayout },
 ];
 
 const PrivateRoutes = [

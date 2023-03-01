@@ -53,7 +53,7 @@ function MySlider({
                                         variant="h3"
                                         sx={{
                                             flex: 1,
-                                            fontSize: { 0: '16px', 768: '24px' },
+                                            fontSize: { 0: '1.6rem', 768: '2.4rem' },
                                             fontWeight: 'bold',
                                             padding: '15px 0px 5px 0px',
                                             ...titleStyles,

@@ -32,7 +32,7 @@ export default function Header(props) {
                 zIndex: 2,
                 width: '100%',
                 '& h3': {
-                    fontSize: '18px ',
+                    fontSize: '1.8rem',
                 },
             }}
         >
@@ -43,7 +43,7 @@ export default function Header(props) {
                         width: '100%',
                         minHeight: 'unset',
                         '& h4 , .btn': {
-                            fontSize: '14px',
+                            fontSize: '1.4rem',
                             maxHeight: '30px',
                             '& *': {
                                 whiteSpace: 'unset',
@@ -70,7 +70,7 @@ export default function Header(props) {
                                     className="btn"
                                     onClick={() => setSideNav(!sideNav)}
                                 >
-                                    <MenuIcon sx={{ fontSize: '20px', color: '#000' }} />
+                                    <MenuIcon sx={{ fontSize: '2rem', color: '#000' }} />
                                 </MyButton>
                                 {sideNav && (
                                     <Box

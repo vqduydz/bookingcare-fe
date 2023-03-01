@@ -114,7 +114,7 @@ function SearchBox() {
                                     return (
                                         <Button
                                             style={{
-                                                fontSize: '14px',
+                                                fontSize: '1.4rem',
                                                 padding: '5px 10px',
                                                 lineHeight: 'normal',
                                                 borderBottom: '1px solid #f5f5f5',

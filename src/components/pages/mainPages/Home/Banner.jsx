@@ -53,7 +53,7 @@ function Banner(props) {
         backgroundPosition: 'center',
     };
 
-    const fontSize = { fontSize: { 0: '12px', 960: '16px' } };
+    const fontSize = { fontSize: { 0: '1.2rem', 960: '1.6rem' } };
 
     return (
         <Box

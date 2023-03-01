@@ -39,7 +39,7 @@ function Content1({ data = { image: '', subTitle: '', title: '', url: '' } }) {
 
                 <Typography
                     sx={{
-                        fontSize: '13px',
+                        fontSize: '1.3rem',
                         padding: '5px 0px',
                         color: 'var(--mau-sam)',
                     }}

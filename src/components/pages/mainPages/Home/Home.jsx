@@ -135,7 +135,7 @@ function Home() {
                                 variant="h3"
                                 sx={{
                                     flex: 1,
-                                    fontSize: { 0: '16px', 768: '24px' },
+                                    fontSize: { 0: '1.6rem', 768: '2.4rem' },
                                     fontWeight: 'bold',
                                     padding: '15px 0px 5px 0px',
                                 }}
@@ -331,7 +331,7 @@ function Home() {
                                     padding: '10px 0',
                                     color: `var(--nen-dieuhuong)`,
                                     fontStyle: 'italic',
-                                    fontSize: '13px',
+                                    fontSize: '1.3rem',
                                 }}
                                 href={'https://bookingcare.vn/app'}
                             >

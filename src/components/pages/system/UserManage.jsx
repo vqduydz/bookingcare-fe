@@ -92,7 +92,7 @@ export default function UserManage() {
                                     color: '#333 !important ',
                                 },
                                 '& *': {
-                                    fontSize: '12px !important',
+                                    fontSize: '1.2rem !important',
                                     '& .MuiTableCell-root': {
                                         padding: '5px',
                                         borderBottomColor: '#00000024',

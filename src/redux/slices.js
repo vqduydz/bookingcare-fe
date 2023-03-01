@@ -66,7 +66,7 @@ export { usersReducer };
 
 export const login = createAsyncThunk('user/login', async (params, thunkAPI) => {
     try {
-        const url = `${process.env.REACT_APP_BACKEND_URL}/login`;
+        const url = `${process.env.REACT_APP_API_ENDPOINT}/login`;
         const response = await axios.post(url, params);
         const res = response.data;
         return res;

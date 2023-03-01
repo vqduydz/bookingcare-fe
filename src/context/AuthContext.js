@@ -1,3 +1,4 @@
+import { useSnackbar } from 'notistack';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
@@ -30,7 +31,7 @@ function AuthContextProvider({ children }) {
         dispatch(changeLanguage(languageCode));
     };
 
-    const socket = io('http://localhost:8080', {
+    const socket = io(process.env.REACT_APP_BACKEND_URL, {
         transports: ['websocket'],
         // cors: {
         //     origin: '*',
@@ -60,7 +61,6 @@ function AuthContextProvider({ children }) {
         if (currentUser.id) {
             if (currentUser.id === userId) {
                 dispatch(logout());
-                console.log(`User ${userId} đã bị đăng xuất`);
             }
         }
     });

@@ -10,5 +10,8 @@ export { default as Manage } from '_/components/pages/system/Manage';
 export { default as UserManage } from '_/components/pages/system/UserManage';
 export { default as ContentManage } from '_/components/pages/system/ContentManage';
 export { default as OrderManage } from '_/components/pages/system/OrderManage';
+// Profile
+export { default as Profile } from '_/components/pages/Profile/Profile';
+
 // other
 export { default as NotFoundPage } from '_/components/pages/NotFoundPage';

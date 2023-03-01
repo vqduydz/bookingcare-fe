@@ -71,7 +71,7 @@ export default function SignIn() {
                     {text.login}
                 </MyButton>
             </form>
-            <Box sx={{ mt: '10px', '& *': { fontSize: '14px' } }}>
+            <Box sx={{ mt: '10px', '& *': { fontSize: '1.4rem' } }}>
                 <MyButton
                     effect
                     to={routes.forgotpassword}

@@ -64,7 +64,7 @@ function ForgotPassword() {
                     {text.forgotPassword}
                 </MyButton>
             </form>
-            <Box sx={{ mt: '10px', '& *': { fontSize: '14px' } }}>
+            <Box sx={{ mt: '10px', '& *': { fontSize: '1.4rem' } }}>
                 <Box sx={{ display: 'inline-flex' }}>
                     <MyButton effect to={routes.login} text>
                         {text.login}

@@ -112,7 +112,7 @@ export default function Row(props) {
                                                     },
 
                                                     '& .icon': {
-                                                        fontSize: '16px !important',
+                                                        fontSize: '1.6rem !important',
                                                     },
                                                     ' * ': {
                                                         borderRadius: '3px',

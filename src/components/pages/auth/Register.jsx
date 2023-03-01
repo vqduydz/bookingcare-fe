@@ -191,7 +191,7 @@ export default function Register() {
                     {text.register}
                 </MyButton>
             </form>
-            <Box sx={{ mt: '10px', '& *': { fontSize: '14px' } }}>
+            <Box sx={{ mt: '10px', '& *': { fontSize: '1.4rem' } }}>
                 <Box sx={{ display: 'inline-flex' }}>
                     <Typography sx={{ margin: '0 5px', display: 'flex', alignItems: 'center' }}>
                         {text.alreadyHaveAnAccount}

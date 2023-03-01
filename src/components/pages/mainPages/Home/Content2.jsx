@@ -31,7 +31,7 @@ function Content2({ data = { image: '', subTitle: '', title: '', url: '' } }) {
                     sx={{
                         marginLeft: { 0: '0', 992: '10px' },
                         flex: 1,
-                        fontSize: { 0: '13px', 768: '16px' },
+                        fontSize: { 0: '1.3rem', 768: '1.6rem' },
                         fontWeight: { 768: 'bold' },
                         padding: '15px 0px 5px 0px',
                         color: 'var(--mau-sam)',

@@ -18,7 +18,7 @@ const getOriginalToken = () => {
 };
 
 export const axiosService = axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL,
+    baseURL: process.env.REACT_APP_API_ENDPOINT,
 });
 // Add a request interceptor
 

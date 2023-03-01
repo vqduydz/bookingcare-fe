@@ -35,7 +35,7 @@ function Footer() {
                         sx={{
                             mt: '10px',
                             '& p,h2': {
-                                fontSize: '14px',
+                                fontSize: '1.4rem',
                                 margin: '5px 0',
                             },
                         }}

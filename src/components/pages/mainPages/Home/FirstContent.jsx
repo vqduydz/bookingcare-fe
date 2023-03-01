@@ -34,7 +34,7 @@ function FirstContent({ data = { image: '', title: '', subTitle: [], extendTitle
                     <Typography
                         sx={{
                             color: '#333',
-                            fontSize: '14px',
+                            fontSize: '1.4rem',
                             fontWeight: 'bold',
                             wordBreak: 'break-word',
                             whiteSpace: 'normal',

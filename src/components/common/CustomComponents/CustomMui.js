@@ -20,7 +20,7 @@ export const muiCustomStyles = {
         },
     },
     '& input': {
-        fontSize: '14px',
+        fontSize: '1.4rem',
     },
     '& span.Mui-checked': {
         color: 'currentcolor !important',
@@ -70,7 +70,7 @@ export const MyTooltip = styled(Tooltip)({
     },
 });
 
-export const MyAppBar = ({ children }) => {
+export const MyAppBar = ({ children, sx }) => {
     const ScrollHandler = ({ window, children }) => {
         const theme = useTheme();
 
@@ -102,12 +102,14 @@ export const MyAppBar = ({ children }) => {
 
     return (
         <ScrollToChangeStyle>
-            <AppBar position="static">{children}</AppBar>
+            <AppBar sx={{ ...sx }} position="static">
+                {children}
+            </AppBar>
         </ScrollToChangeStyle>
     );
 };
 
-export const Inner = ({ sx = {}, children }) => {
+export const Inner = ({ sx = {}, children, className }) => {
     const baseStyle = { paddingRight: '15px', paddingLeft: '15px', marginRight: 'auto', marginLeft: 'auto' };
     const Inner = styled('div')(({ theme }) => ({
         [theme.breakpoints.up('0')]: {
@@ -123,8 +125,12 @@ export const Inner = ({ sx = {}, children }) => {
             width: '1170px',
         },
     }));
-
-    return <Inner sx={{ ...baseStyle, ...sx }}>{children}</Inner>;
+    const classes = [className];
+    return (
+        <Inner className={classes} sx={{ ...baseStyle, ...sx }}>
+            {children}
+        </Inner>
+    );
 };
 
 // Tooltip - click
