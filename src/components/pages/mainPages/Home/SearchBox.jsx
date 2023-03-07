@@ -203,7 +203,7 @@ function SearchBox() {
                         justifyContent: 'center',
                     }}
                 >
-                    <SearchIcon fontSize="large" />
+                    <SearchIcon fontSize="small" />
                 </Box>
                 <InputBase
                     type="text"

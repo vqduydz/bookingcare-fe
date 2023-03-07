@@ -9,9 +9,10 @@ import {
     Profile,
     Register,
     UserManage,
+    Project,
+    Timeline,
 } from '_/components/pages';
 import ResetPass from '_/components/pages/auth/ResetPass';
-import Timeline from '_/components/pages/Profile/Timeline';
 import ContentOnlyLayout from '_/layouts/ContentOnlyLayout/ContentOnlyLayout';
 import SystemLayout from '_/layouts/SystemLayout/SystemLayout';
 
@@ -27,6 +28,8 @@ const routes = {
     forgotpassword: '/forgotpassword',
     resetPassword: '/reset-password/:token',
     profile: '/profile',
+    timeline: '/timeline',
+    project: '/project',
     notfoundpage: '*',
 };
 
@@ -38,7 +41,8 @@ const PublicRoutes = [
     { path: routes.forgotpassword, comp: ForgotPassword, layout: ContentOnlyLayout },
     { path: routes.notfoundpage, comp: NotFoundPage },
     { path: routes.profile, comp: Profile, layout: ContentOnlyLayout },
-    { path: routes.profile, comp: Timeline, layout: ContentOnlyLayout },
+    { path: routes.timeline, comp: Timeline, layout: ContentOnlyLayout },
+    { path: routes.project, comp: Project, layout: ContentOnlyLayout },
 ];
 
 const PrivateRoutes = [

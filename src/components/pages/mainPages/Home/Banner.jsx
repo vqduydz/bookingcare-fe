@@ -2,7 +2,7 @@ import { Box, styled, Typography } from '@mui/material';
 import classNames from 'classnames/bind';
 
 import icon from '_/assets/icon';
-import images from '_/assets/image';
+import images from '_/assets/images';
 import { Button } from '_/components/common';
 import { Inner } from '_/components/common/CustomComponents/CustomMui';
 import styles from './Home.module.scss';
@@ -59,7 +59,7 @@ function Banner(props) {
         <Box
             className={cx('banner')}
             sx={{
-                background: `#fff center/cover url(${images.cover}) no-repeat`,
+                background: `#fff center/cover url(${images['./bookingcare-cover.png']}) no-repeat`,
             }}
         >
             <Box>
@@ -136,7 +136,7 @@ function Banner(props) {
                                     <Box
                                         sx={{
                                             ...size,
-                                            backgroundImage: `url(${images.khamChuyenKhoa})`,
+                                            backgroundImage: `url(${images['./kham-chuyen-khoa.png']})`,
                                         }}
                                     />
                                     Khám
@@ -151,7 +151,7 @@ function Banner(props) {
                                     <Box
                                         sx={{
                                             ...size,
-                                            backgroundImage: `url(${images.khamTuXa})`,
+                                            backgroundImage: `url(${images['./kham-tu-xa.png']})`,
                                         }}
                                     />
                                     Khám
@@ -166,7 +166,7 @@ function Banner(props) {
                                     <Box
                                         sx={{
                                             ...size,
-                                            backgroundImage: `url(${images.khamTongQuat})`,
+                                            backgroundImage: `url(${images['./kham-tong-quat.png']})`,
                                         }}
                                     />
                                     Khám
@@ -181,7 +181,7 @@ function Banner(props) {
                                     <Box
                                         sx={{
                                             ...size,
-                                            backgroundImage: `url(${images.dichVuXetNghiem})`,
+                                            backgroundImage: `url(${images['./dich-vu-xet-nghiem.png']})`,
                                         }}
                                     />
                                     Xét nghiệm
@@ -195,7 +195,7 @@ function Banner(props) {
                                     <Box
                                         sx={{
                                             ...size,
-                                            backgroundImage: `url(${images.sucKhoeTinhThan})`,
+                                            backgroundImage: `url(${images['./suc-khoe-tinh-than.png']})`,
                                         }}
                                     />
                                     Sức khỏe
@@ -210,7 +210,7 @@ function Banner(props) {
                                     <Box
                                         sx={{
                                             ...size,
-                                            backgroundImage: `url(${images.khamNhaKhoa})`,
+                                            backgroundImage: `url(${images['./kham-nha-khoa.png']})`,
                                         }}
                                     />
                                     Khám
@@ -225,7 +225,7 @@ function Banner(props) {
                                     <Box
                                         sx={{
                                             ...size,
-                                            backgroundImage: `url(${images.phauThuat})`,
+                                            backgroundImage: `url(${images['./phau-thuat.png']})`,
                                         }}
                                     />
                                     Gói
@@ -240,7 +240,7 @@ function Banner(props) {
                                     <Box
                                         sx={{
                                             ...size,
-                                            backgroundImage: `url(${images.khamTaiNha})`,
+                                            backgroundImage: `url(${images['./kham-tai-nha.png']})`,
                                         }}
                                     />
                                     Sản phẩm
@@ -254,7 +254,7 @@ function Banner(props) {
                                     <Box
                                         sx={{
                                             ...size,
-                                            backgroundImage: `url(${images.lichSu})`,
+                                            backgroundImage: `url(${images['./suc-khoe-doanh-nghiep.png']})`,
                                         }}
                                     />
                                     Sức khỏe

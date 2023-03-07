@@ -1,4 +1,7 @@
 export const activeAddClass = (className = '') => {
+    window.addEventListener('beforeunload', function () {
+        localStorage.removeItem(className);
+    });
     let buttons = document.querySelectorAll(`.${className}`);
     buttons.forEach((button) => {
         button.addEventListener('click', function () {

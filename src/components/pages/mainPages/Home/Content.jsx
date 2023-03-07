@@ -4,14 +4,24 @@ import { Button } from '_/components/common';
 function Content({ data = { image: '', subTitle: '', title: '', url: '' } }) {
     const { image, title, url } = data;
     return (
-        <Button href={url} style={{ padding: 0 }}>
-            <Box
-                sx={{
-                    width: '100%',
-                    textAlign: 'left',
-                    '&:hover': { h3: { color: 'var( --mau-bc-16)' } },
-                }}
-            >
+        <Box
+            sx={{
+                width: '100%',
+                textAlign: 'left',
+                '& span': {
+                    display: 'flex',
+                    flexDirection: 'column',
+                },
+                '&:hover': {
+                    h3: {
+                        color: 'var( --mau-bc-16)',
+
+                        boxShadow: '0 0 10px 5px #00000012',
+                    },
+                },
+            }}
+        >
+            <Button href={url} style={{ padding: 0, width: '100%' }}>
                 <Box
                     sx={{
                         backgroundImage: `url(${image})`,
@@ -36,8 +46,8 @@ function Content({ data = { image: '', subTitle: '', title: '', url: '' } }) {
                 >
                     {title}
                 </Typography>
-            </Box>
-        </Button>
+            </Button>
+        </Box>
     );
 }
 

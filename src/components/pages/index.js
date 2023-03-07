@@ -12,6 +12,7 @@ export { default as ContentManage } from '_/components/pages/system/ContentManag
 export { default as OrderManage } from '_/components/pages/system/OrderManage';
 // Profile
 export { default as Profile } from '_/components/pages/Profile/Profile';
-
+export { default as Project } from '_/components/pages/Profile/Project';
+export { default as Timeline } from '_/components/pages/Profile/Timeline';
 // other
 export { default as NotFoundPage } from '_/components/pages/NotFoundPage';

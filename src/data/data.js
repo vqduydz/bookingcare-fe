@@ -1,11 +1,11 @@
-import images from '_/assets/image';
+import images from '_/assets/images';
 
 export const ADS = [
     {
         target: '_blank',
         title: 'Báo sức khỏe đời sống nói về BookingCare',
         href: 'https://suckhoedoisong.vn/dat-lich-kham-benh-tiet-kiem-thong-minh-va-hieu-qua-n153232.html',
-        src: images.suckhoedoisong,
+        src: images['./suc-khoe-doi-song.png'],
         bgSize: '142px 30px',
         width: '162px',
         height: '50px',
@@ -14,7 +14,7 @@ export const ADS = [
         target: '_blank',
         title: 'Báo điện tử ictnews giới thiệu BookingCare',
         href: 'https://ictnews.vn/kinh-doanh/doanh-nghiep/startup-bookingcare-chinh-thuc-ra-mat-phien-ban-di-dong-cua-nen-tang-ho-tro-dat-lich-kham-online-173512.ict',
-        src: images.ictnews,
+        src: images['./ictnews.png'],
 
         width: '127px',
         height: '50px',
@@ -24,7 +24,7 @@ export const ADS = [
         target: '_blank',
         title: 'Cục công nghệ thông tin - Bộ Y tế nói về BookingCare',
         href: 'https://ehealth.gov.vn/?action=News&newsId=46094',
-        src: images.ehealth,
+        src: images['./cuc-cntt-bo-y-te.png'],
         width: '127px',
         height: '50px',
         bgSize: '107px 40px',
@@ -33,7 +33,7 @@ export const ADS = [
         target: '_blank',
         title: 'VnExpress nói về BookingCare',
         href: 'https://video.vnexpress.net/tin-tuc/cuoc-song-4-0/kham-benh-khong-phai-xep-hang-o-ha-noi-3797126.html',
-        src: images.VnExpress,
+        src: images['./vnexpress.png'],
         width: '183px',
         height: '50px',
         bgSize: '163px 30px',
@@ -42,7 +42,7 @@ export const ADS = [
         target: '_blank',
         title: 'VTV1 - Cà phê khởi nghiệp 21-02-2018',
         href: 'https://vtv.vn/video/ca-phe-khoi-nghiep-21-02-2018-282723.htm',
-        src: images.VTV1,
+        src: images['./vtv1.png'],
         width: '106px',
         height: '50px',
         bgSize: '86px 30px',
@@ -52,7 +52,7 @@ export const ADS = [
         target: '_blank',
         title: 'Báo điện tử infonet nói về BookingCare',
         href: 'https://infonet.vietnamnet.vn/khoe-dep/da-co-hon-20-000-luot-benh-nhan-dat-lich-kham-qua-bookingcare-175080.html',
-        src: images.infonet,
+        src: images['./infonet.png'],
         width: '129px',
         height: '50px',
         bgSize: '109px 30px',
@@ -61,7 +61,7 @@ export const ADS = [
         target: '_blank',
         title: 'VTC News nói về BookingCare',
         href: 'https://vtc.vn/dat-kham-chuyen-khoa-va-hanh-trinh-ho-tro-cac-benh-vien-qua-tai-d434101.html',
-        src: images.VTCNews,
+        src: images['./vtcnews.png'],
         width: '151px',
         height: '50px',
         bgSize: '131px 30px',
@@ -71,7 +71,7 @@ export const ADS = [
         target: '_blank',
         title: 'VTC Go nói về BookingCare',
         href: 'https://www.youtube.com/watch?v=mstAc81lpMc',
-        src: images.VTCGo,
+        src: images['./vtcgo.png'],
         width: '96px',
         height: '50px',
         bgSize: '76px 25px',
@@ -1097,7 +1097,7 @@ export const itemsTimeline = [
         Mình rất vui và hạnh phúc được ra đời trong một gia đình đầy yêu thương và ấm áp như thế này.
         Mình hy vọng sẽ được trưởng thành và trở thành niềm tự hào của gia đình.
         Cảm ơn mọi người đã chào đón mình`,
-        image: images.born,
+        image: images['./born.png'],
     },
     {
         time: '1997-2001',
@@ -1109,7 +1109,8 @@ export const itemsTimeline = [
             -- 2000 Học lớp 4 (Học lực khá).
             -- 2001 Học lớp 5 (Học lực khá).
         Thi tốt nghiệp xếp loại trung bình khá (lúc thi toán làm được 2 câu bút hết mực xin mượn bạn bị giám thị tưởng hỏi bài quát 1 phát ngồi im re chờ hết giờ không dám nói với ai luôn)`,
-        image: images.thtd,
+
+        image: images['./thtd.png'],
     },
     {
         time: '2002-2005',
@@ -1120,7 +1121,8 @@ export const itemsTimeline = [
             -- 2004 Học lớp 8 (Học lực khá).
             -- 2005 Học lớp 9 (Học lực khá).
         Thi tốt nghiệp xếp loại khá.`,
-        image: images.thcs,
+
+        image: images['./thcs.png'],
     },
     {
         time: '2006-2008',
@@ -1130,7 +1132,8 @@ export const itemsTimeline = [
             -- 2007 Học lớp 11 (Học lực trung bình).
             -- 2008 Học lớp 12 (Học lực trung bình).
         Thi tốt nghiệp xếp loại khá`,
-        image: images.thpt,
+
+        image: images['./thpt.png'],
     },
     {
         time: '2009-2012',
@@ -1142,7 +1145,8 @@ export const itemsTimeline = [
             -- 2011 Học năm ba. Vẫn vừa học vừa làm tại quán ăn. (Năm 3 bị liệt môn thể chất nên không có học bổng :( )
             -- 2012 Tốt nhiệp cao đẳng xếp loại trung bình khá. Tốt nghiệp xong cũng chia tay công việc ở quán ăn sau gần 2 năm. Chia tay luôn Bình Dương qua Tp.Hồ Chí Minh "ăn bám" 2 anh trai.
         Kết thúc cuộc sống Sinh viên với ban ngày đi học về là những cuộc sát phạt 52 lá quyết định đứa nào nấu cơm, đứa nào rửa chén, chém gió việc trên trời dưới đất. Tối đến là mỗi đứa 1 công việc làm thêm !`,
-        image: images.vns,
+
+        image: images['./vns.png'],
     },
     {
         time: `2012-2013`,
@@ -1150,7 +1154,8 @@ export const itemsTimeline = [
         content: `Chuyển qua Tp.Hồ Chí Minh "ăn bám" 2 ông anh và rải cv kha khá chỗ thì : 
             -- 2012 vào làm nhân viên sản xuất thiết bị GPS (lắp ráp linh kiện) tại Công ty TNHH Thương mại Điện tử Vinh Hiển.
             -- 2013 Nghỉ làm ở công ty Vinh Hiển và chuyển qua làm nhân viên kỹ thuật kiêm nhân viên bảo hành (lắp đặt, bảo trì, bảo hành thiết bị camera, gps) tại Công ty Cổ phần TM-DV-XNK Econtrol.`,
-        image: images.logo,
+
+        image: images['./job.png'],
     },
     {
         time: '04/2020 - nay (02/2023)',
@@ -1159,7 +1164,9 @@ export const itemsTimeline = [
         -- 04/2020 Mẹ bị tai nạn giao thông - chấn thương sọ não (tỉ lệ thương tật 98%) nên nghỉ việc ở Econtrol sau khoảng 7 năm gắn bó về chăm mẹ.
         -- 2020-2021 Đưa mẹ chữa bệnh tại Dòng Thánh Gioan Thiên Chúa (đạo Thiên Chúa) ở Biên Hòa, Đồng Nai.
         -- 05/2021 Giãn cách xã hội vì dịch covid nên phải đưa mẹ về nhà chăm và kiếm làm 1 số việc làm thêm ở nhà.
-        -- Qua thêm khoảng thời gian làm nhập liệu, captcha, quảng cáo ... do mấy chỗ nó alo mời chào thì cũng có thêm ít thu nhập và cũng bị mấy chỗ nó scam không trả tiền. Đến tầm tháng 03 năm 2022 có ý nghĩ học về lập trình và bắt đầu tìm hiểu về lập trình web/web app. Ban đầu khá là lan mang không biết bắt đầu từ đâu. Đến khi biết đến F8 và xác định được lộ trình học và như thế bắt đầu học thôi.`,
-        image: images.thatnghiep,
+        -- Qua thêm khoảng thời gian làm nhập liệu, captcha, quảng cáo ... do mấy chỗ nó alo mời chào thì cũng có thêm ít thu nhập và cũng bị mấy chỗ nó scam không trả tiền. Sau đó ngưng các công việc trên lại vì cảm thấy nó không ổn chút nào.
+        -- Đến khoảng tháng 08 năm 2021 nảy ra ý nghĩ học về lập trình và bắt đầu tìm hiểu về lập trình web/web app.`,
+
+        image: images['./thatnghiep.png'],
     },
 ];

@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import Slider from 'react-slick';
 
 import icon from '_/assets/icon';
-import images from '_/assets/image';
+import images from '_/assets/images';
 import { Button } from '_/components/common';
 import { Inner } from '_/components/common/CustomComponents/CustomMui';
 import { useAuth } from '_/context/AuthContext';
@@ -297,7 +297,7 @@ function Home() {
                         <Box sx={{ display: { 0: 'none', 768: 'block' }, minWidth: '215px', float: 'right' }}>
                             <Box
                                 sx={{
-                                    backgroundImage: `url(${images.app})`,
+                                    backgroundImage: `url(${images['./bookingcare-app.png']})`,
                                     backgroundRepeat: 'no-repeat',
                                     backgroundSize: '200px auto',
                                     paddingTop: '40px',

@@ -11,7 +11,7 @@ import { useSnackbar } from 'notistack';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import icon from '_/assets/icon';
-import images from '_/assets/image';
+import images from '_/assets/images';
 import { Button, MyButton } from '_/components/common';
 import { styleBtn } from '_/components/pages/system/styleBtn';
 import { useAuth } from '_/context/AuthContext';
@@ -168,10 +168,16 @@ function Header() {
                     >
                         <Button to={'#'} style={{ marginLeft: '5px', padding: '0 10px' }}>
                             <Typography
-                                variant="h5"
-                                sx={{ color: '#969495', lineHeight: '30px', alignItems: 'center', display: 'flex' }}
+                                sx={{
+                                    fontSize: '1.4rem',
+                                    fontWeight: 700,
+                                    color: '#969495',
+                                    lineHeight: '30px',
+                                    alignItems: 'center',
+                                    display: 'flex',
+                                }}
                             >
-                                <ContactSupportIcon fontSize="large" sx={{ color: '#45c3d2' }} /> Hỗ trợ
+                                <ContactSupportIcon fontSize="small" sx={{ color: '#45c3d2' }} /> Hỗ trợ
                             </Typography>
                         </Button>
                     </Box>
